@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">widget</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="activity_main_FrameLayout">FrameLayout</string>
+    <string name="activity_main_RelativeLayout">RelativeLayout</string>
+    <string name="activity_main_LinearLayout">LinearLayout</string>
+    <string name="activity_main_TableLayout">TableLayout</string>
+</resources>
