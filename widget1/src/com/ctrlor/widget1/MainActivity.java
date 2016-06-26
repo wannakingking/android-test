@@ -1,9 +1,15 @@
-package ctrlor.widget;
+package com.ctrlor.widget1;
+
+import com.ctrlor.widget1.R;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
@@ -11,6 +17,20 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		// display a textview and button
+//		TextView show = (TextView)findViewById(R.id.show_text);
+		Button press = (Button)findViewById(R.id.Click_Button);
+		
+		press.setOnClickListener(new Button.OnClickListener() {
+			//@Override
+			TextView show = (TextView)findViewById(R.id.show_text);
+			public void onClick(View v) {
+				show.setText("you click me");
+			}
+		});
+		
+		
 	}
 
 	@Override

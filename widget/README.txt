@@ -1,2 +1,0 @@
-detail:
-simple widget
