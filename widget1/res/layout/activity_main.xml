@@ -20,7 +20,17 @@
         android:id="@+id/Click_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button"
-        />
+        android:text="@string/button" />
 
+    <TextView
+        android:id="@+id/text_view01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <TextView 
+        android:id="@+id/text_view02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="all" 
+        android:text="@string/text_view2" />
 </LinearLayout>

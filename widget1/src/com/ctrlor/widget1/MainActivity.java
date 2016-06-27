@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 		
 		// display a textview and button
 //		TextView show = (TextView)findViewById(R.id.show_text);
-		Button press = (Button)findViewById(R.id.Click_Button);
+		 Button press = (Button)findViewById(R.id.Click_Button);
 		
 		press.setOnClickListener(new Button.OnClickListener() {
 			//@Override
@@ -29,6 +29,12 @@ public class MainActivity extends Activity {
 				show.setText("you click me");
 			}
 		});
+		
+		//two text view
+		String str1 = "Welecome to the Android world! this is textview 1";
+		TextView mTextView1 = (TextView)findViewById(R.id.text_view01);
+		mTextView1.setText(str1);
+		
 		
 		
 	}
