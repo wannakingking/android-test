@@ -33,4 +33,10 @@
         android:layout_height="wrap_content"
         android:autoLink="all" 
         android:text="@string/text_view2" />
+    
+    <Button 
+        android:id="@+id/show_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    
 </LinearLayout>
