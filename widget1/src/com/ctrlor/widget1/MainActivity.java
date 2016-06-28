@@ -8,9 +8,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Button;
-
+import android.widget.LinearLayout;
 
 public class MainActivity extends Activity {
 
@@ -59,7 +60,30 @@ public class MainActivity extends Activity {
 			}
 		});
 		
+		// show TypefaceText Activity
+/*		LinearLayout mainLayout = (LinearLayout)findViewById(R.layout.activity_main);
+		Button btShowTF =  Button(this); */
+		Button btShowTF = (Button)findViewById(R.id.button_showTypeface);
+		btShowTF.setText(R.string.button_showTypeface);
+		/*
+		btShowTF.setLayoutParams(new ViewGroup.LayoutParams(
+				ViewGroup.LayoutParams.WRAP_CONTENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT));
+				*/
+		btShowTF.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent0 = new Intent(MainActivity.this, TypefaceTextActivity.class);
+				startActivity(intent0);
+			}
+		});
+	//	mainLayout.addView(btShowTF);
 		
+		
+		
+		
+		//setContentView(R.layout.activity_main);
+//		setContentView(btShowTF);
 	}
 
 	@Override

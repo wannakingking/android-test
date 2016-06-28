@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import android.graphics.Color;
 import android.widget.LinearLayout;
+import android.content.Intent;
 
 public class ColorfulTextViewActivity extends Activity {
 	// testing colorful "textview", define object need to be used.
@@ -75,8 +76,8 @@ public class ColorfulTextViewActivity extends Activity {
 		bReturn.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//myLayout.setVisibility(View.INVISIBLE);
-				//setContentView(R.layout.activity_main);
+				Intent intent0 = new Intent(ColorfulTextViewActivity.this, MainActivity.class);
+				startActivity(intent0);
 			}
 		});
 		
