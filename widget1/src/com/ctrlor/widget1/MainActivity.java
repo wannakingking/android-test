@@ -4,14 +4,16 @@ import com.ctrlor.widget1.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.graphics.drawable.Drawable;
+
+import android.support.v4.content.ContextCompat;
 
 public class MainActivity extends Activity {
 
@@ -27,6 +29,15 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		
+		// init items description and divide line.
+		String[] strFuncItem= getResources().getStringArray(R.array.FuncItem);
+		String strDLine = getResources().getString(R.string.divide_line);
+		
+		
+		// show NO.1 tip
+		TextView tip1 = (TextView)findViewById(R.id.funcItem_tip1);
+		tip1.setText(strFuncItem[0] + "\n" + strDLine);
+		
 		// display a textview and button
 		// ************************************************
 		Button press = (Button)findViewById(R.id.Click_Button);
@@ -40,15 +51,35 @@ public class MainActivity extends Activity {
 		
 		// *******************************************
 
+		// show NO.2 tip
+		TextView tip2 = (TextView)findViewById(R.id.funcItem_tip2);
+		tip2.setText("\n" + strFuncItem[1] + "\n" + strDLine);
+		
 		//two text view
 		// *******************************************
 		String str1 = "Welecome to the Android world! this is textview 1";
 		TextView mTextView1 = (TextView)findViewById(R.id.text_view01);
+		TextView mTextView2 = (TextView)findViewById(R.id.text_view02);
 		mTextView1.setText(str1);
+		
+		// get the 'blue' color
+		Drawable mycolorD = ContextCompat.getDrawable(getBaseContext(), R.color.blue);
+		
+		// set background color
+		mTextView1.setBackground(mycolorD);
+		
+		// set fore color
+		mTextView1.setTextColor(android.graphics.Color.GREEN);
+		mTextView2.setTextColor(Color.RED);
 		//********************************************
 
 		
+		// show NO.3 tip
+		TextView tip3 = (TextView)findViewById(R.id.funcItem_tip3);
+		tip3.setText("\n" + strFuncItem[2] + "\n" + strDLine);
+		
 		// show colorful textview
+		// ***********************************************************
 		
 		Button bShowTV = (Button)findViewById(R.id.show_TV);
 		bShowTV.setText("show colorful textview");
@@ -60,7 +91,14 @@ public class MainActivity extends Activity {
 			}
 		});
 		
+		// ************************************************************
+		
+		// show NO.4 tip
+		TextView tip4 = (TextView)findViewById(R.id.funcItem_tip4);
+		tip4.setText("\n" + strFuncItem[3] + "\n" + strDLine);
+		
 		// show TypefaceText Activity
+		// ***************************************************************
 /*		LinearLayout mainLayout = (LinearLayout)findViewById(R.layout.activity_main);
 		Button btShowTF =  Button(this); */
 		Button btShowTF = (Button)findViewById(R.id.button_showTypeface);
@@ -84,6 +122,7 @@ public class MainActivity extends Activity {
 		
 		//setContentView(R.layout.activity_main);
 //		setContentView(btShowTF);
+		// *****************************************************************
 	}
 
 	@Override

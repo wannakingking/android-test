@@ -7,5 +7,6 @@
     <string name="button">Click me</string>
     <string name="text_view2">Please visit the Android developer pages: http://developer.android.com/index.html</string>
     <string name="button_showTypeface">show Typeface</string>
+    <string name="divide_line">----------------------------------------------------</string>
 
 </resources>

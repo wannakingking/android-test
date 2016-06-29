@@ -10,6 +10,13 @@
     android:orientation="vertical"
     >
 
+    <!-- show NO.1 tip -->
+    <TextView
+        android:id="@+id/funcItem_tip1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    
+    <!-- show Textview and Button -->
     <TextView
         android:id="@+id/show_text"
         android:layout_width="fill_parent"
@@ -22,9 +29,16 @@
         android:layout_height="wrap_content"
         android:text="@string/button" />
 
+    <!-- show NO.2 tip -->
+    <TextView
+        android:id="@+id/funcItem_tip2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- show two line's Textview -->
     <TextView
         android:id="@+id/text_view01"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     
     <TextView 
@@ -34,11 +48,25 @@
         android:autoLink="all" 
         android:text="@string/text_view2" />
     
+    <!-- show NO.3 tip -->
+    <TextView
+        android:id="@+id/funcItem_tip3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- show colorful Textview -->
     <Button 
         android:id="@+id/show_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    
+
+    <!-- show NO.4 tip -->
+    <TextView
+        android:id="@+id/funcItem_tip4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- show typeface Textview -->
     <Button
         android:id="@+id/button_showTypeface"
         android:layout_width="wrap_content"

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <string-array name="FuncItem">
+            <item>No.1 TextView and Button</item>
+            <item>No.2 Two Line\'s TextView</item>
+            <item>No.3 Show colorful TextView</item>
+            <item>No.4 Show typeface TextView</item>
+        </string-array>
+    </resources>

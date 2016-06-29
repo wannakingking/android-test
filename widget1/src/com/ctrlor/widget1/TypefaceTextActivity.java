@@ -6,11 +6,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Button;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.content.Intent;
 
 public class TypefaceTextActivity extends Activity {
 	// TypeFace TextView
