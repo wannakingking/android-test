@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -21,55 +21,72 @@
         android:id="@+id/show_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="@string/hello_world" 
+        android:layout_below="@id/funcItem_tip1" />
     
     <Button 
         android:id="@+id/Click_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button" />
+        android:text="@string/button" 
+        android:layout_below="@id/show_text" />
 
     <!-- show NO.2 tip -->
     <TextView
         android:id="@+id/funcItem_tip2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Click_Button" />
 
     <!-- show two line's Textview -->
     <TextView
         android:id="@+id/text_view01"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/funcItem_tip2" />
     
     <TextView 
         android:id="@+id/text_view02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="all" 
-        android:text="@string/text_view2" />
+        android:text="@string/text_view2" 
+        android:layout_below="@id/text_view01" />
     
     <!-- show NO.3 tip -->
     <TextView
         android:id="@+id/funcItem_tip3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view02" />
 
     <!-- show colorful Textview -->
     <Button 
         android:id="@+id/show_TV"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/funcItem_tip3" />
 
-    <!-- show NO.4 tip -->
+    <!--
     <TextView
         android:id="@+id/funcItem_tip4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" /> 
+        -->
 
     <!-- show typeface Textview -->
     <Button
         android:id="@+id/button_showTypeface"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" 
+        android:layout_alignTop="@id/show_TV"
+        android:layout_toEndOf="@id/show_TV" />
     
-</LinearLayout>
+    <!-- show EditText -->
+    <Button
+        android:id="@+id/button_showEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/button_showTypeface"
+        android:layout_toEndOf="@id/button_showTypeface" />
+</RelativeLayout>

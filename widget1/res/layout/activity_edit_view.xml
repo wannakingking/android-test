@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ctrlor.widget1.EditTextActivity"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+   <!-- EditText View -->
+   <EditText
+       android:id="@+id/et_editText"
+       android:labelFor="@+id/et_editText"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" 
+       android:inputType="text"
+       android:text="" />
+   
+   <Button
+       android:id="@+id/button_getContent"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="" />
+
+</LinearLayout>
+    

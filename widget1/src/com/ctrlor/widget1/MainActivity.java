@@ -93,9 +93,6 @@ public class MainActivity extends Activity {
 		
 		// ************************************************************
 		
-		// show NO.4 tip
-		TextView tip4 = (TextView)findViewById(R.id.funcItem_tip4);
-		tip4.setText("\n" + strFuncItem[3] + "\n" + strDLine);
 		
 		// show TypefaceText Activity
 		// ***************************************************************
@@ -123,6 +120,19 @@ public class MainActivity extends Activity {
 		//setContentView(R.layout.activity_main);
 //		setContentView(btShowTF);
 		// *****************************************************************
+		
+		// show EditText 
+		// ***********************************************************
+		
+		Button bShowEX = (Button)findViewById(R.id.button_showEditText);
+		bShowEX.setText("show EditText");
+		bShowEX.setOnClickListener( new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent0 = new Intent(MainActivity.this, EditTextActivity.class);
+				startActivity(intent0);
+			}
+		});
 	}
 
 	@Override
