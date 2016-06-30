@@ -89,4 +89,12 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/button_showTypeface"
         android:layout_toEndOf="@id/button_showTypeface" />
+
+    <!-- show little widget 'allInOne' -->
+    <Button
+        android:id="@+id/button_showAllInOne"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_showEditText" />
+
 </RelativeLayout>

@@ -133,6 +133,19 @@ public class MainActivity extends Activity {
 				startActivity(intent0);
 			}
 		});
+
+		// show little widgets 'allInOne' 
+		// ***********************************************************
+		
+		Button bShowAll = (Button)findViewById(R.id.button_showAllInOne);
+		bShowAll.setText("show all little widgets");
+		bShowAll.setOnClickListener( new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent0 = new Intent(MainActivity.this, AllInOneActivity.class);
+				startActivity(intent0);
+			}
+		});
 	}
 
 	@Override
