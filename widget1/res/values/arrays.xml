@@ -7,4 +7,11 @@
             <item>No.4 Show typeface TextView</item>
             <item>No.5 Show EditText</item>
         </string-array>
+        
+        <string-array name="xmldata">
+            <item>xml-1</item>
+            <item>xml-2</item>
+            <item>xml-3</item>
+            <item>xml-4</item>
+        </string-array>
     </resources>
