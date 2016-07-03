@@ -146,6 +146,8 @@ public class MainActivity extends Activity {
 				startActivity(intent0);
 			}
 		});
+				Intent intent0 = new Intent(MainActivity.this, AllInOneActivity.class);
+				startActivity(intent0);
 	}
 
 	@Override

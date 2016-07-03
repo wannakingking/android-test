@@ -42,8 +42,8 @@ public class AllInOneActivity extends Activity {
 		private DatePicker datePicker;
 		private TextView tvOutput;
 		
-		private String[] strList;
 		private boolean bool = false;
+		private String strOutput;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +73,22 @@ public class AllInOneActivity extends Activity {
 				pressButton();
 			}
 		});
+		 
+		// test spinner
+		testSpinner();
 		
+		// test date and time picker
+		testDateTimePicker();
+		
+		// test process bar
+		testProcessBar();
+		
+		// 
+
 	}
 		// press the button
 		private void pressButton() {
-			String strOutput = "";
+			strOutput = "";
 			
 			// test CheckBox
 			if(checkBox1.isChecked()) {
@@ -123,36 +134,71 @@ public class AllInOneActivity extends Activity {
 				strOutput = strOutput + "no radio: is checked" + "\n";
 			}
 			
-			// spinner list
+			tvOutput.setText(strOutput);
+			
+		}
+		// spinner list
+		private void testSpinner() {
 			// implement from java
-			final String strJava[] = {"java-1", "java-2", "java-3", "java-4"};
+			final String[] strJava = {"java-1", "java-2", "java-3", "java-4"};
 			// implement from xml
 			final String strXml[] = getResources().getStringArray(R.array.xmldata);
 			
-
-				
-			ArrayAdapter<String> strSpinner = new ArrayAdapter<String>(
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+					android.R.layout.simple_spinner_item, strJava);
 			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			spinnerList.setAdapter(adapter);
+		}
 			
+		// test date and time picker
+		private void testDateTimePicker() {
 			
+			// test time picker
+			timePicker.setIs24HourView(true);
+
+			// test date picker
+			datePicker.init(1990, 11, 13, new DatePicker.OnDateChangedListener() {
+				
+				@Override
+				public void onDateChanged(DatePicker view, int year, int monthOfYear,
+						int dayOfMonth) {
+					// TODO Auto-generated method stub
+					strOutput = "";
+					strOutput = strOutput + "Date picker:year-" + year +", month-" +
+							++monthOfYear + ", day-" + dayOfMonth + "\n";
+					tvOutput.setText(strOutput);
+					
+				}
+			});
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			// TextView output content
-			tvOutput.setText(strOutput);
-			
+		}
+
+		// test process bar
+		private void testProcessBar() {
+			progressBar1.setMax(100);
+			progressBar2.setMax(100);
+			final int totalProgressTime = 100;
+			final Thread t = new Thread() {
+				@Override
+				public void run() {
+					int jumpTime = 0;
+					
+					while(true) {
+						try {
+							sleep(200);
+							jumpTime += 1;
+							progressBar2.setProgress(jumpTime);
+							if(jumpTime >= totalProgressTime) {
+								jumpTime = 0;
+							}
+						}
+						catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			};
+			t.start();
 			
 		}
 }
