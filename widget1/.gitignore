@@ -44,6 +44,8 @@
 # eclipse format
 !/src
 !/res
+/res/drawable*
+/res/values-*
 !AndroidMainfest.xml
 
 # android studio

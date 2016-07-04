@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
 		// ***********************************************************
 		
 		Button bShowTV = (Button)findViewById(R.id.show_TV);
-		bShowTV.setText("show colorful textview");
+		bShowTV.setText("colorful textview");
 		bShowTV.setOnClickListener( new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 		// ***********************************************************
 		
 		Button bShowEX = (Button)findViewById(R.id.button_showEditText);
-		bShowEX.setText("show EditText");
+		bShowEX.setText("EditText");
 		bShowEX.setOnClickListener( new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -138,7 +138,7 @@ public class MainActivity extends Activity {
 		// ***********************************************************
 		
 		Button bShowAll = (Button)findViewById(R.id.button_showAllInOne);
-		bShowAll.setText("show all little widgets");
+		bShowAll.setText("all widgets");
 		bShowAll.setOnClickListener( new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -146,8 +146,46 @@ public class MainActivity extends Activity {
 				startActivity(intent0);
 			}
 		});
-				Intent intent0 = new Intent(MainActivity.this, AllInOneActivity.class);
+
+		// show image view 
+		// ***********************************************************
+		
+		Button bShowImageView = (Button)findViewById(R.id.button_showImageView);
+		bShowImageView.setText("image view");
+		bShowImageView.setOnClickListener( new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent0 = new Intent(MainActivity.this, ImageViewActivity.class);
 				startActivity(intent0);
+			}
+		});
+
+		// show grid view
+		// ***********************************************************
+		
+		Button bShowGridView = (Button)findViewById(R.id.button_showGridView);
+		bShowGridView.setText("grid view");
+		bShowGridView.setOnClickListener( new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent0 = new Intent(MainActivity.this, GridViewActivity.class);
+				startActivity(intent0);
+			}
+		});
+
+		// show tab view
+		// ***********************************************************
+		
+		Button bShowTabView = (Button)findViewById(R.id.button_showTabView);
+		bShowTabView.setText("tab view");
+		bShowTabView.setOnClickListener( new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent0 = new Intent(MainActivity.this, TabViewActivity.class);
+				startActivity(intent0);
+			}
+		});
+
 	}
 
 	@Override

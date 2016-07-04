@@ -97,4 +97,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/button_showEditText" />
 
+    <!-- show image view -->
+    <Button
+        android:id="@+id/button_showImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_showAllInOne"
+        android:layout_alignStart="@id/button_showAllInOne" />
+
+    <!-- show grid view -->
+    <Button
+        android:id="@+id/button_showGridView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignTop="@id/button_showImageView"
+		android:layout_toEndOf="@id/button_showImageView" />
+
+    <!-- show tab view -->
+    <Button
+        android:id="@+id/button_showTabView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignTop="@id/button_showGridView"
+		android:layout_toEndOf="@id/button_showGridView" />
+
 </RelativeLayout>
