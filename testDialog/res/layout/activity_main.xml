@@ -1,12 +1,57 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
-</RelativeLayout>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" 
+        android:text="two buttons dialog"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" 
+        android:text="three buttons dialog"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" 
+        android:text="input view dialog"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" 
+        android:text="radio button dialog"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" 
+        android:text="check box dialog"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" 
+        android:text="list view dialog"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" 
+        android:text="diy view dialog"
+        android:textStyle="bold" />
+    
+</LinearLayout>
