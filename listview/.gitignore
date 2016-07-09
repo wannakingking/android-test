@@ -46,7 +46,7 @@
 !/res
 /res/drawable*
 /res/values-*
-!AndroidMainfest.xml
+!AndroidManifest.xml
 
 # android studio
 !/app
