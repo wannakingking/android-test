@@ -1,0 +1,71 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <!-- notification info -->
+    <TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="notification info:" />
+
+    <Button
+        android:id="@+id/notify_info_button1"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:text="Good" />
+    
+    <Button 
+        android:id="@+id/notify_info_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Normal" />
+    
+    <Button
+        android:id="@+id/notify_info_button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bad" />
+    </TableRow>
+    
+    <!-- notification type -->
+    <TableRow>
+        
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="notification type:" />
+
+    <Button
+        android:id="@+id/notify_type_button1"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:text="Only sound" />
+    
+    <Button 
+        android:id="@+id/notify_type_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Only vibrate" />
+    
+    <Button
+        android:id="@+id/notify_type_button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Only_light" />
+    </TableRow>
+    
+    <!-- clear -->
+    <TableRow
+        android:gravity="center_horizontal">
+        <Button 
+            android:id="@+id/clear_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" 
+            android:textColor="#ffffff"
+            android:background="#000000"/>
+    </TableRow>
+</TableLayout>
