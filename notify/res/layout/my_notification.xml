@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff" >
+    
+    <TextView
+        android:id="@+id/notify_textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="notification text"
+        android:textColor="#000000" />
+    
+    <Button 
+        android:id="@+id/notify_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button1"
+        android:layout_below="@id/notify_textview1"/>
+    
+    <Button
+        android:id="@+id/notify_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button2"
+        android:layout_alignTop="@id/notify_button1"
+        android:layout_toRightOf="@id/notify_button1" />
+
+</RelativeLayout>

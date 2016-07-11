@@ -42,10 +42,11 @@
 !.gitignore
 
 # eclipse format
+!.project
 !/src
 !/res
-  #/res/drawable*
-  #/res/values-*
+/res/drawable-*
+/res/values-*
 !AndroidManifest.xml
 
 # android studio

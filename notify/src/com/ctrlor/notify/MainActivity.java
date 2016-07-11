@@ -4,14 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RemoteViews;
 
 public class MainActivity extends Activity {
 
@@ -29,6 +28,7 @@ public class MainActivity extends Activity {
 		Button noteInfoBtn1 = (Button) findViewById(R.id.notify_info_button1);
 		Button noteInfoBtn2 = (Button) findViewById(R.id.notify_info_button2);
 		Button noteInfoBtn3 = (Button) findViewById(R.id.notify_info_button3);
+		Button noteInfoBtn4 = (Button) findViewById(R.id.notify_info_button4);
 		Button noteTypeBtn1 = (Button) findViewById(R.id.notify_type_button1);
 		Button noteTypeBtn2 = (Button) findViewById(R.id.notify_type_button2);
 		Button noteTypeBtn3 = (Button) findViewById(R.id.notify_type_button3);
@@ -38,21 +38,28 @@ public class MainActivity extends Activity {
 		noteInfoBtn1.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				sendNotification1();
+				sendNotification_after_API_7();
 			}
 		});
 
 		noteInfoBtn2.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				sendNotification2();
+				sendNotification_after_API_11();
 			}
 		});
 
 		noteInfoBtn3.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				sendNotification3();
+				sendNotification_after_API_16();
+			}
+		});
+
+		noteInfoBtn4.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sendNotification_diy();
 			}
 		});
 
@@ -73,7 +80,7 @@ public class MainActivity extends Activity {
 		noteTypeBtn3.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				setNotificationType(Notification.DEFAULT_LIGHTS);
+				setNotificationType(Notification.DEFAULT_ALL);
 			}
 		});
 
@@ -86,30 +93,10 @@ public class MainActivity extends Activity {
 
 	}
 	
-	// send notification
-	private void  sendNotification(String tickerText, String title, String content,
-			int drawable) 
-	{
-		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-			.setSmallIcon(drawable)
-			.setContentTitle(title)
-			.setContentText(content);
-		Intent resultIntent = new Intent(this, MainActivity.class);
-		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-		stackBuilder.addParentStack(MainActivity.class);
-		stackBuilder.addNextIntent(resultIntent);
-		PendingIntent resultPendingIntent = 
-				stackBuilder.getPendingIntent(
-						0,
-						PendingIntent.FLAG_UPDATE_CURRENT
-						);
-		mBuilder.setContentIntent(resultPendingIntent);
-		mNotificationManager.notify(NOTIFICATIONS_ID, mBuilder.build());
-	}
 	
 	// send notification1
 	@SuppressWarnings("deprecation")
-	private void sendNotification1() {
+	private void sendNotification_after_API_7() {
 		// PendingIntent 不是马上调用，需要在下拉状态条发出的activity
 		PendingIntent pendingIntent = PendingIntent.getActivity(
 				this, 0, new Intent(this, MainActivity.class), 0);
@@ -121,7 +108,7 @@ public class MainActivity extends Activity {
 		notify1.setLatestEventInfo(this, "notify",
 				"notify context", pendingIntent);
 		notify1.number = 1;
-		notify1.ledARGB = 0xff00ff00;
+		notify1.ledARGB = 0xffffffff;
 		notify1.ledOnMS = 300;
 		notify1.ledOffMS = 1000;
 		notify1.flags |= Notification.FLAG_AUTO_CANCEL;
@@ -132,17 +119,86 @@ public class MainActivity extends Activity {
 	}
 	
 	// send notification 2
-	private void sendNotification2() {
+	private void sendNotification_after_API_11() {
+		PendingIntent pendingIntent2 = PendingIntent.getActivity(this, 
+				0, new Intent(this, MainActivity.class), 0);
+		// after api 11, create "Notification.Builder
+		@SuppressWarnings("deprecation")
+		Notification notify2 = new Notification.Builder(this)
+			.setSmallIcon(R.drawable.ic_launcher)
+			.setTicker("ticker text")
+			.setContentTitle("content title")
+			.setContentText("content text")
+			.setContentIntent(pendingIntent2)
+			.setNumber(2)
+			.getNotification(); // use build() in the api 16
+		notify2.flags |= Notification.FLAG_AUTO_CANCEL;
+		mNotificationManager.notify(NOTIFICATIONS_ID, notify2);
 		
 	}
 
 	// send notification 3
-	private void sendNotification3() {
+	private void sendNotification_after_API_16() {
+		
+		Notification.Builder mBuilder = new Notification.Builder(this)
+			.setSmallIcon(R.drawable.ic_launcher)
+			.setTicker("ticker text")
+			.setContentTitle("content title")
+			.setContentText("content text")
+			//.setContentIntent(pendingIntent2)
+			.setNumber(3);
+
+		Intent resultIntent = new Intent(this, MainActivity.class);
+		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+		stackBuilder.addParentStack(MainActivity.class);
+		stackBuilder.addNextIntent(resultIntent);
+		PendingIntent resultPendingIntent = 
+				stackBuilder.getPendingIntent(
+						0,
+						PendingIntent.FLAG_UPDATE_CURRENT
+						);
+		mBuilder.setContentIntent(resultPendingIntent);
+
+		Notification notify = mBuilder.build();
+		notify.flags |= Notification.FLAG_AUTO_CANCEL; 
+
+		mNotificationManager.notify(NOTIFICATIONS_ID, notify);
+		
+	}
+
+	// send notification used diy layout
+	private void sendNotification_diy() {
+		
+		Notification.Builder mBuilder = new Notification.Builder(this)
+			.setSmallIcon(R.drawable.ic_launcher)
+			.setTicker("Diy layout notification")
+			.setContentTitle("content title")
+			.setContentText("content text")
+			//.setContentIntent(pendingIntent2)
+			.setNumber(4);
+
+		Intent resultIntent = new Intent(this, MainActivity.class);
+		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+		stackBuilder.addParentStack(MainActivity.class);
+		stackBuilder.addNextIntent(resultIntent);
+		PendingIntent resultPendingIntent = 
+				stackBuilder.getPendingIntent(
+						0,
+						PendingIntent.FLAG_UPDATE_CURRENT
+						);
+		mBuilder.setContentIntent(resultPendingIntent);
+		mBuilder.setContent(new RemoteViews(getPackageName(),
+				R.layout.my_notification));
+
+		Notification notify = mBuilder.build();
+		notify.flags |= Notification.FLAG_AUTO_CANCEL;
+
+		mNotificationManager.notify(NOTIFICATIONS_ID, notify);
 		
 	}
 
 	// set the type of notification
-	private void setNotificationType(int type) {
+	private void setNotificationType(int defaults) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
 			.setSmallIcon(R.drawable.ic_launcher)
 			.setContentTitle("title")
@@ -157,20 +213,11 @@ public class MainActivity extends Activity {
 						PendingIntent.FLAG_UPDATE_CURRENT
 						);
 		mBuilder.setContentIntent(resultPendingIntent);
-	/*	
-		switch(type) {
-			case DEFAULT_SOUND:
-				break;
-			
-			case DEFAULT_VIBRATE:
-				long[] vibrate = {0, 100, 200, 300};
-				mBuilder.setVibrate(vibrate);
-				break;
-			case DEFAULT_LIGHTS:
-				mBuilder.setLights(0xff00ff00, 300, 1000);
-		}
-		*/
-		mNotificationManager.notify(NOTIFICATIONS_ID, mBuilder.build());
+		
+		Notification notify = mBuilder.build();
+		notify.flags |= Notification.FLAG_AUTO_CANCEL;
+		notify.defaults |= defaults;
+		mNotificationManager.notify(NOTIFICATIONS_ID, notify);
 
 	}
 }

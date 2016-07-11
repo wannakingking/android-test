@@ -1,8 +1,12 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context="${relativePackage}.${activityClass}" >
+
+<TableLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
     <!-- notification info -->
     <TableRow>
@@ -15,19 +19,26 @@
         android:id="@+id/notify_info_button1"
         android:layout_width="wrap_content" 
         android:layout_height="wrap_content"
-        android:text="Good" />
+        android:text="android 2.x notify" />
     
     <Button 
         android:id="@+id/notify_info_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Normal" />
+        android:text="api 11 notify" />
     
     <Button
         android:id="@+id/notify_info_button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bad" />
+        android:text="api 16 notify" />
+
+    <Button 
+        android:id="@+id/notify_info_button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="diy notify" />
+    
     </TableRow>
     
     <!-- notification type -->
@@ -54,7 +65,7 @@
         android:id="@+id/notify_type_button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Only_light" />
+        android:text="the_all" />
     </TableRow>
     
     <!-- clear -->
@@ -69,3 +80,4 @@
             android:background="#000000"/>
     </TableRow>
 </TableLayout>
+</ScrollView>
