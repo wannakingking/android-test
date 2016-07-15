@@ -101,19 +101,16 @@ public class MainActivity extends Activity {
 		PendingIntent pendingIntent = PendingIntent.getActivity(
 				this, 0, new Intent(this, MainActivity.class), 0);
 		// used in the android 2.x
-		Notification notify1 = new Notification();
-		notify1.icon = R.drawable.ic_launcher;
-		notify1.tickerText = "android 2.x ticktext";
-		notify1.when = System.currentTimeMillis();
-		notify1.setLatestEventInfo(this, "notify",
+		Notification notify = new Notification();
+		notify.icon = R.drawable.ic_launcher;
+		notify.tickerText = "android 2.x ticktext";
+		notify.when = System.currentTimeMillis();
+		notify.setLatestEventInfo(this, "notify",
 				"notify context", pendingIntent);
-		notify1.number = 1;
-		notify1.ledARGB = 0xffffffff;
-		notify1.ledOnMS = 300;
-		notify1.ledOffMS = 1000;
-		notify1.flags |= Notification.FLAG_AUTO_CANCEL;
+		notify.number = 1;
+		notify.flags |= Notification.FLAG_AUTO_CANCEL;
 		
-		mNotificationManager.notify(NOTIFICATIONS_ID, notify1);
+		mNotificationManager.notify(NOTIFICATIONS_ID, notify);
 			
 		
 	}

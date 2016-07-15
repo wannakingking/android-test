@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <com.ctrlor.diywidget.ListSelectView 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ctrlor="http://schemas.android.com/apk/res/com.ctrlor.diywidget"
+        android:id="@+id/lsvTest"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_listitem"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" 
+        ctrlor:entries="@array/entries_list_preference"
+        ctrlor:entryValues="@array/entries_list_preference" />
+
+</LinearLayout>
