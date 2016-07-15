@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="listener event" />
+
+    <!--
+    <Button
+        android:id="@+id/btn_inner_class_listener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="inner class listener" />
+
+-->
+    <Button
+        android:id="@+id/btn_outer_class_listener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="outer class listener" />
+
+    <Button
+        android:id="@+id/btn_activity_listener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="activity listener" />
+
+    <Button
+        android:id="@+id/btn_anonymous_listener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="anonymous listener" />
+
+    <Button
+        android:id="@+id/btn_blind_label_listener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="blind label listener" />
+
+</LinearLayout>

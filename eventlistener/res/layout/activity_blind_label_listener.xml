@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/edittext_blind_label_listener"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:cursorVisible="false"
+        android:textColor="#a4a4a4" />
+
+    <Button
+        android:id="@+id/button_blind_label_listener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click me" 
+        android:onClick="clickHandler" />
+
+</LinearLayout>
+
