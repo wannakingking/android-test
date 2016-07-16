@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <EditView
+    <EditText
         android:id="@+id/address"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="input the direction phone number" />
 
-    <EditView
+    <EditText
         android:id="@+id/content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

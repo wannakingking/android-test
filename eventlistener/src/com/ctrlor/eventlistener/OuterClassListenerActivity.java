@@ -28,7 +28,6 @@ public class OuterClassListenerActivity extends Activity {
         button1.setOnLongClickListener( new SendSMSListener(
                     this, mAddress, mContent));
     }
-
     // define the class SendSMSListener 
     public class SendSMSListener implements OnLongClickListener {
         private Activity mAct;
@@ -48,20 +47,26 @@ public class OuterClassListenerActivity extends Activity {
             String strAddress = mAddress.getText().toString();
             String strContent = mContent.getText().toString();
 
-            // get SMS manager
-            SmsManager smsManager = SmsManager.getDefault();
+            try {
+            	// get SMS manager
+            	SmsManager smsManager = SmsManager.getDefault();
 
-            // Create pendingIntent for send SMS
-            PendingIntent mPInent = PendingIntent.getBroadcast(mAct,
-                    0, new Intent(), 0);
+            	// Create pendingIntent for send SMS
+            	PendingIntent mPInent = PendingIntent.getBroadcast(mAct,
+            			0, new Intent(), 0);
 
-            // send SMS
-            smsManager.sendTextMessage(strAddress, null, strContent,
-                    mPInent, null);
-
-            Toast.makeText(mAct, "send SMS successful!", Toast.LENGTH_LONG)
-                .show();
-            
+            	// send SMS
+            	smsManager.sendTextMessage(strAddress, null, strContent,
+	                    mPInent, null);
+	
+	            Toast.makeText(getApplicationContext(), "send SMS successful!", Toast.LENGTH_LONG)
+	                .show();
+            } catch (Exception e) {
+            	Toast.makeText(getApplicationContext(), "SMS send fail!", Toast.LENGTH_LONG)
+            		.show();
+            	e.printStackTrace();
+            }
+	            
             return false;
         }
         

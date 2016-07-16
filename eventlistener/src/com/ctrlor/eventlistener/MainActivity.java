@@ -31,7 +31,8 @@ public class MainActivity extends Activity {
         button2.setOnClickListener( new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent mIntent = new Intent(MainActivity.this, OuterClassListenerActivity.class);
+                    Intent mIntent = new Intent(MainActivity.this, 
+                    		OuterClassListenerActivity.class);
                     startActivity(mIntent);
                 }
 	    });
