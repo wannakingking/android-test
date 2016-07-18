@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <EditText
+        android:id="@+id/ori"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="screen orientation" />
+
+    <EditText
+        android:id="@+id/navigation"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="navigation controller" />
+
+    <EditText
+        android:id="@+id/touch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="screen touch" />
+
+    <EditText
+        android:id="@+id/mnc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="mobile network code" />
+
+    <Button
+        android:id="@+id/btn_get_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get info" />
+
+    <Button
+        android:id="@+id/btn_set_orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set screen orientation" />
+
+
+</LinearLayout>
