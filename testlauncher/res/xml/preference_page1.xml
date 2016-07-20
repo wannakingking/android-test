@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Set the ringstone of the system -->
+    <RingtonePreference
+        android:ringtoneType="all"
+        android:title="Set Ringtone"
+        android:summary="choose the ringtone"
+        android:showDefault="true"
+        android:key="ring_key"
+        android:showSilent="true" />
+
+    <PreferenceCategory 
+        android:title="Setting group of persional info" >
+        
+        <!-- Input username -->
+        <EditTextPreference
+            android:key="username"
+            android:title="Pls input the username:"
+            android:summary="Pls input your username!"
+            android:dialogTitle="Your username is: " />
+
+        <!-- Choose gender -->
+        <ListPreference
+            android:key="gender"
+            android:title="gender"
+            android:summary="Choose your gender"
+            android:dialogTitle="Your gender is:"
+            android:entries="@array/gender_name_list"
+            android:entryValues="@array/gender_value_list" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:text="Setting group of system function" >
+        
+        <CheckBoxPreference
+            android:key="autosave"
+            android:title="auto save the schedule"
+            android:summaryOn="autosave: ON"
+            android:summaryOff="autosave: OFF"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

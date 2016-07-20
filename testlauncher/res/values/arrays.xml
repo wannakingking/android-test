@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string-array name="gender_name_list">
+        <item>man</item>
+        <item>woman</item>
+    </string-array>
+
+    <string-array name="gender_value_list">
+        <item>male</item>
+        <item>female</item>
+    </string-array>
+
+    <string-array name="light_intensity_list">
+        <item>low</item>
+        <item>middle</item>
+        <item>hight</item>
+    </string-array>
+
+    <string-array name="light_value_list">
+        <item>weak</item>
+        <item>medium</item>
+        <item>strong</item>
+    </string-array>
+</resources>
