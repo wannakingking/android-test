@@ -1,0 +1,83 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Please input your sign up informaion" />
+
+    <TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="username" />
+ 		
+        <EditText 
+            android:id="@+id/et_username_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="user name"/>
+    </TableRow>
+    
+    <TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="password" />
+ 		
+        <EditText 
+            android:id="@+id/et_password_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="password"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="gender" />
+ 		
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+	            android:id="@+id/radio_male_gender_register"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	           	android:checked="true"
+	           	android:text="male"/>
+            
+            <RadioButton
+                android:id="@+id/radio_female_gender_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="female"/>
+        </RadioGroup>
+    </TableRow>
+    
+    <TableRow>
+        <Button
+            android:id="@+id/btn_select_city_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Select city" />
+        <EditText
+            android:id="@+id/et_input_city_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="input city" />
+    </TableRow>
+    
+	<Button 
+		android:id="@+id/btn_register"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="register" />
+
+</TableLayout>
