@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FragmentDemo</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="first_page">first page</string>
+    <string name="second_page">second page</string>
+    <string name="third_page">third page</string>
+
+</resources>
