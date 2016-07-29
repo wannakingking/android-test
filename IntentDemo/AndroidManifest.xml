@@ -31,6 +31,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>    
+        
+        <receiver android:name=".TestBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="ctrlor.intent.action.BROADCAST_RECEIVER_TEST" />
+            </intent-filter>
+        </receiver>
         </application>
 
 </manifest>

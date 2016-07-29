@@ -3,8 +3,8 @@ package me.ctrlor.intentdemo;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-
 import android.widget.TextView;
 
 public class IntentReceiverActivity extends Activity {
@@ -16,13 +16,16 @@ public class IntentReceiverActivity extends Activity {
 		
 		setTitle("Intent Receiver");
 		
-		String strAction = getIntent().getAction();
-		Set<String> strCategory = getIntent().getCategories();
+		// Display some elements of the incoming intent.
+		Intent mIntent = getIntent();
+		String strAction = mIntent.getAction();
+		Set<String> strCategory = mIntent.getCategories();
+		String strSender = mIntent.getStringExtra( "sender" );
 		
 		TextView tvShow = (TextView) findViewById( R.id.tv_intent_receiver );
-		tvShow.setText(
-				"action:" + "\t" 	+ strAction 	+ "\n" +
-				"category:\t" 	+ strCategory 	+ "\n" 
-				);
+		tvShow.setText( 
+				"action:" 		+ strAction 	+ "\n" +
+				"category:"  	+ strCategory 	+ "\n" +
+				"intent sender:"+ strSender		);
 	}
 }

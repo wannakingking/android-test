@@ -21,14 +21,16 @@ public class MainActivity extends Activity {
 
 		setTitle("Intent sender");
 		
+		// A system intent: ACTION_DIAL
 		Button button1 = (Button) findViewById( R.id.btn_send_intent_call );
 		button1.setOnClickListener( new Button.OnClickListener() {
 			
 			@Override
 			public void onClick( View v ) {
 				try {
+					final String strSender = "Button1 in the Main Activity";
 					Intent mIntent = new Intent( Intent.ACTION_DIAL );
-					//mIntent.addCategory( MainActivity.CATEGORY_CTRLOR_TEST );
+					mIntent.putExtra( "sender",  strSender );
 					startActivity( mIntent );
 				} catch ( Exception e ) {
 					e.printStackTrace();
@@ -36,20 +38,45 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		// User-defined intent: ACTION_CTRLOR_TEST
 		Button button2 = (Button) findViewById( R.id.btn_send_intent_test );
 		button2.setOnClickListener( new Button.OnClickListener() {
 			
 			@Override
 			public void onClick( View v ) {
 				try {
+					final String strSender = "Button2 in the Main Activity";
+
 					Intent mIntent = new Intent(); 
 					mIntent.setAction( MainActivity.ACTION_CTRLOR_TEST );
 					mIntent.addCategory( MainActivity.CATEGORY_CTRLOR_TEST );
+					mIntent.putExtra( "sender", strSender  );
+
 					startActivity( mIntent );
 				} catch( Exception e ) {
 					e.printStackTrace();
 				}
 			}
 		});
+
+		// Send a broadcast
+		Button button3 = (Button) findViewById( R.id.btn_send_intent_broadcast_test );
+		button3.setOnClickListener( new Button.OnClickListener() {
+			
+			@Override
+			public void onClick( View v ) {
+				try {
+					final String strSender = "Button3 in the Main Activity";
+					Intent mIntent = new Intent();
+					mIntent.setAction( "ctrlor.intent.action.BROADCAST_RECEIVER_TEST" );
+					mIntent.putExtra( "sender",  strSender );
+
+					sendBroadcast( mIntent );
+				} catch ( Exception e ) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 	}
 }
