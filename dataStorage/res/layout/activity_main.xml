@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <Button 
+        android:id="@+id/btn_shared_preferences_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start SharedPreferences Demo"
+        />
+	
+    <Button 
+        android:id="@+id/btn_file_storage_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start file storage Demo"
+        />
+	
+    <Button 
+        android:id="@+id/btn_sqlite_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start sqlite Demo"
+        />
+	
+    <Button 
+        android:id="@+id/btn_content_provider_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start ContentProvider Demo"
+        />
+	
+    <Button 
+        android:id="@+id/btn_network_storage_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start network storage Demo"
+        />
+	
+	
+</LinearLayout>
