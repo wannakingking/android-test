@@ -86,10 +86,5 @@ public class MainActivity extends Activity {
             }
         });
 
-        // tmp
-                Intent intent = new Intent(
-                        MainActivity.this, 
-                        ContentProviderDemo.class );
-                startActivity( intent );
     }
 }

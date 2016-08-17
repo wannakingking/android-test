@@ -64,8 +64,6 @@ public class SqliteDemo extends Activity
 					db.close();
 
 					Log.d( TAG, "initlize db:" + db );
-					Toast.makeText( SqliteDemo.this, "initlize db:" + db, 
-							Toast.LENGTH_SHORT ).show();
 				}
 				catch( Exception e )
 				{ 
@@ -98,10 +96,6 @@ public class SqliteDemo extends Activity
 							Log.d( TAG, "query sql>" + "\nid:" + id +
 									"\nusername:" + username + "\npassword:" +
 									password );
-							Toast.makeText( SqliteDemo.this,  
-									"Query sql>" + "\nid:" + id +
-									"\nusername:" + username + "\npassword" +
-									password, Toast.LENGTH_SHORT ).show();
 						}
 					}
 					updateListView( db );
@@ -280,10 +274,10 @@ public class SqliteDemo extends Activity
 
         SimpleAdapter adapter = new SimpleAdapter( this, 
                 users,
-                R.layout.sqlite_demo_list_view_users,
+                R.layout.list_items,
                 new String[] { "id", "username", "password" },
-                new int[]    { R.id.tv_user_id, R.id.tv_user_name, 
-                                R.id.tv_user_password });
+                new int[]    { R.id.tv_item_1, R.id.tv_item_2, 
+                                R.id.tv_item_3});
         listview.setAdapter( adapter );
         listview.setSelection( adapter.getCount() - 1 );
     }
