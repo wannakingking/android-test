@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="2"
+    android:baselineAligned="false"
+    android:padding="9dp"
+    tools:context="${relativePackage}.${activityClass}" >
+
+<!-- Left linearlayout -->
+	<!-- 1dp black border -->
+    <LinearLayout
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:background="#000000"
+	        android:padding="1dp"
+	        >
+	     
+	    <LinearLayout
+	        android:orientation="vertical"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_margin="1dp"
+	        android:background="#ffffff"
+	        >
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:text="Animation defined by 'anim set'"
+		        android:textSize="25sp"
+		        />
+		    <!-- Buttons in central -->
+		    <LinearLayout 
+		        android:orientation="vertical"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:gravity="center_vertical|center_horizontal"
+		        >
+			    <Button
+			        android:id="@+id/btn_alpha"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Alpha animation"
+			        />
+			
+			    <Button
+			        android:id="@+id/btn_scale"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Scale animation"
+			        />
+			
+			    <Button
+			        android:id="@+id/btn_translate"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Translate animation"
+			        />
+			
+			    <Button
+			        android:id="@+id/btn_rotate"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Rotate animation"
+			        />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+	
+    <!-- Play button -->
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="P\nL\nA\nY"
+        />
+			
+<!-- Right linearlayout -->
+	<!-- 1dp black border -->
+    <LinearLayout
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:background="#000000"
+	        android:padding="1dp"
+	        >
+	    <LinearLayout
+	        android:orientation="vertical"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_margin="1dp"
+	        android:background="#ffffff"
+	        >
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:text="Animation defined by java"
+		        android:textSize="25sp"
+		        />
+
+		    <!-- Buttons in central -->
+		    <LinearLayout 
+		        android:orientation="vertical"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:gravity="center_vertical|center_horizontal"
+		        >
+			    <Button
+			        android:id="@+id/btn_alpha_2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="center"
+			        android:text="Alpha animation"
+			        />
+			
+			    <Button
+			        android:id="@+id/btn_scale_2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Scale animation"
+			        />
+			
+			    <Button
+			        android:id="@+id/btn_translate_2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Translate animation"
+			        />
+			
+			    <Button
+			        android:id="@+id/btn_rotate_2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Rotate animation"
+			        />
+			</LinearLayout>
+	    </LinearLayout>
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+    
+    <Button
+        android:id="@+id/btn_transition_drawable_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Drawable animation demo"
+        />
+
+    <Button
+        android:id="@+id/btn_tween_animation_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Tween animation demo"
+        />
+
+    <Button
+        android:id="@+id/btn_frame_animation_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Frame animation demo"
+        />
+
+    <Button
+        android:id="@+id/btn_property_animation_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Property animation demo"
+        />
+
+    <Button
+        android:id="@+id/btn_gif_animation_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Gif animation demo"
+        />
+
+    <Button
+        android:id="@+id/btn_textview_animation_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="TextView animation demo"
+        />
+
+</LinearLayout>
