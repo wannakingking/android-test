@@ -70,18 +70,6 @@ public class MainActivity extends Activity
             }
         });
 
-        // Start gif animation demo
-        Button btnGif = (Button) findViewById(R.id.btn_gif_animation_demo);
-        btnGif.setOnClickListener(new Button.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent  = new Intent(MainActivity.this,
-                    GifAnimationDemo.class);
-                startActivity(intent);
-            }
-        });
 
         // Start TextView animation demo
         Button btnTv= (Button) findViewById(R.id.btn_textview_animation_demo);
@@ -97,7 +85,7 @@ public class MainActivity extends Activity
         });
 
                 Intent intent  = new Intent(MainActivity.this,
-                    FrameAnimationDemo.class);
+                    PropertyAnimationDemo.class);
                 startActivity(intent);
 	}
 }

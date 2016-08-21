@@ -26,7 +26,6 @@
         <activity android:name=".TweenAnimationDemo" />
         <activity android:name=".FrameAnimationDemo" />
         <activity android:name=".PropertyAnimationDemo" />
-        <activity android:name=".GifAnimationDemo" />
         <activity android:name=".TextViewAnimationDemo" />
     </application>
 
