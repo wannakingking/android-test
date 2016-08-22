@@ -85,7 +85,7 @@ public class MainActivity extends Activity
         });
 
                 Intent intent  = new Intent(MainActivity.this,
-                    PropertyAnimationDemo.class);
+                    TextViewAnimationDemo.class);
                 startActivity(intent);
 	}
 }
