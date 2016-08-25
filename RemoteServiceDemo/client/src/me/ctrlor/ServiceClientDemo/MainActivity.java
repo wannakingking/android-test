@@ -1,7 +1,6 @@
 package me.ctrlor.ServiceClientDemo;
 
 import me.ctrlor.ServiceClientDemo.IExpression;
-
 import android.app.Activity;
 import android.app.Service;
 import android.content.ComponentName;
@@ -9,7 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.RemoteException;
 import android.text.InputType;
 import android.util.Log;
@@ -22,34 +23,26 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-	final static String TAG = "ctrlor-MainActivity";
+	final static String TAG = "MainActivity";
 	
-	private TextView tv;
-	private EditText et;
-	private Button btn;
+	private TextView tv_1;
+	private EditText et_1;
+	private Button btn_1;
     private IExpression expressionBinder;
     
-    private boolean is_bound = false;
+    private String strExpression;
+    private int iResult;
 
     // Service connnector
-    private ServiceConnection mConnection = new ServiceConnection()
+    final ServiceConnection mConnection = new ServiceConnection()
     {
         @Override
         public void onServiceConnected( ComponentName name, 
                 IBinder service )
         {
-        	try
-        	{
             expressionBinder = IExpression.Stub.asInterface( service );
             Log.d( TAG, "in onServiceConnected" );
-            Log.d( TAG, "expressionBinder:" + expressionBinder );
-            Log.d( TAG, "getExpression():" + getExpression() );
-            Log.d( TAG, "getResult():" + expressionBinder.getResult() );
-        	}
-        	catch (Exception e)
-        	{ 
-        		e.printStackTrace();
-        	}
+            thread.start();
         }
 
         @Override
@@ -60,61 +53,84 @@ public class MainActivity extends Activity {
     };
 
 
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView( R.layout.activity_main );
-
 		
-		
-		Button button1 = (Button) findViewById( R.id.btn_1);
-		button1.setOnClickListener( new Button.OnClickListener() 
-		{
-			@Override
-			public void onClick( View v)
-			{
+		btn_1 = (Button) findViewById( R.id.btn_1);
+		btn_1.setOnClickListener(compareResultListener); 
 			
-		try
-		{
-		Intent mIntent = new Intent();
-		mIntent.setAction( "ctrlor.intent.action.EXPRESSION" );
-			//startService( mIntent );
-			boolean flag = bindService( mIntent, mConnection, Context.BIND_AUTO_CREATE );
-			Log.d( TAG, "mConnection:" + mConnection );
-			Log.d( TAG, "bindService:" + flag );
+		tv_1 = (TextView) findViewById(R.id.tv_1);
+		et_1 = (EditText) findViewById(R.id.et_1);
 
-			Log.d( TAG, "expressionBinder:" + expressionBinder );
-			//Log.d( TAG, "getNum()" + expressionBinder.getNum() );
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-			}
-		});
-/*
-		if( !is_bound )
-		{
-			bindService( mIntent, mConnection, Service.BIND_AUTO_CREATE );
-			is_bound = true;
-		}
-		Log.v( TAG, "bindService over" );
 
-		buildView();
-		Log.d( TAG, "expression:" + getExpression() );
-		Log.d( TAG, "build view over" );
+    	Intent mIntent = new Intent();
+	    mIntent.setAction( "ctrlor.intent.action.EXPRESSION" );
+	    bindService( mIntent, mConnection, Context.BIND_AUTO_CREATE );
+
+		Log.d( TAG, "expressionBinder:" + expressionBinder );
 		
-		try{
-			Log.d( TAG, "onCreate-getNum():" 	+ expressionBinder.getNum() + "" );
-			Log.d( TAG, "onCreate-getOperator():" + expressionBinder.getOperator() + "" );
-			Log.d( TAG, "onCreate-getResult():" 	+ expressionBinder.getResult() + "" );
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-*/
 	}
 
+
+
+    // Handler message
+    private Handler mHandler = new Handler()
+    {
+    	@Override
+    	public void handleMessage(Message msg)
+    	{
+    		if(msg.what == 0x1024)
+    		{
+    			strExpression = (String)msg.obj;
+    			iResult = msg.arg1;
+    			
+    			tv_1.setText(strExpression);
+
+		    	Log.d(TAG, "strExpression:" + strExpression);
+		    	Log.d(TAG, "iResult:" + iResult);
+    		}
+    	}
+    };
+    // Query expression and result
+    Thread thread = new Thread(new Runnable()
+    {
+    	@Override
+	    public void run()
+	    {
+    		try
+    		{
+
+    			int[] iNum = {};
+    			char strOperator = ' ';
+    			String strExpression = "";
+		    	
+		    	iNum 			= expressionBinder.getNum();
+		    	strOperator 	= expressionBinder.getOperator();
+		    	strExpression 	= iNum[0] + strOperator + iNum[1] + " = ";
+		    	int iResult 	= expressionBinder.getResult();
+		    	
+		    	Message msg = new Message();
+		    	msg.what = 0x1024;
+		    	msg.obj = strExpression;
+		    	msg.arg1 = iResult;
+		    	mHandler.sendMessage(msg);
+		    	
+		    	Log.d(TAG, "strExpression:" + strExpression);
+		    	Log.d(TAG, "iResult:" + iResult);
+
+		    }
+		    
+		    catch(Exception e)
+		    {
+		    	e.printStackTrace();
+		    }
+	
+	    }
+    });
+
+    /*
 	// Building layout and widget views.
     public void buildView() 
     {
@@ -128,11 +144,11 @@ public class MainActivity extends Activity {
         final TableRow tableRow = new TableRow( this );
         
         tv = new TextView( this );
-        tv.setText( "textview" );
-        tv.setText( getExpression() );
+        tv.setText( "expressioin" );
+        //tv.setText( getExpression() );
 
         et = new EditText( this );
-        et.setText( "edittext" );
+        et.setText( "result" );
         et.setInputType( InputType.TYPE_CLASS_NUMBER );
 
         btn = new Button( this );
@@ -147,7 +163,7 @@ public class MainActivity extends Activity {
         		TableLayout.LayoutParams.WRAP_CONTENT,
         		TableLayout.LayoutParams.WRAP_CONTENT ));
     }
-    
+   */ 
     // The listener of the button
     private Button.OnClickListener compareResultListener = 
     		new Button.OnClickListener()
@@ -157,16 +173,16 @@ public class MainActivity extends Activity {
     	{
     		try
     		{
-	    		int iResult = expressionBinder.getResult();
-	    		int iInputValue = Integer.parseInt(et.getText().toString());
+	    		
+	    		int iInputValue = Integer.parseInt(et_1.getText().toString());
 	    		
 	    		if( iInputValue == iResult )
 	    		{
-	    			btn.setText( "Yes: " + iResult );
+	    			btn_1.setText( "Yes: " + iResult );
 	    		}
 	    		else
 	    		{
-	    			btn.setText( "No: " + iResult );
+	    			btn_1.setText( "No: " + iResult );
 	    		}
 
     		}
@@ -179,29 +195,6 @@ public class MainActivity extends Activity {
     	}
     };
     
-    // Expression string
-	private String getExpression() 
-
-    {
-	    int[] iNum = {};
-	    char strOperator = ' ';
-	    String strExpression = "";
-	    	
-	    try
-	    {
-	    	iNum 			= expressionBinder.getNum();
-	    	strOperator 	= expressionBinder.getOperator();
-	    	strExpression 	= iNum[0] + strOperator + iNum[1] + " = ";
-	    }
-	    
-	    catch(Exception e)
-	    {
-	    	e.printStackTrace();
-	    }
-
-    	return strExpression;
-	    	
-    }
 	
 	@Override
 	public void onDestroy()

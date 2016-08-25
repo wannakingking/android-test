@@ -1,19 +1,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_weight="4"
+        android:text="@string/hello_world" 
+        />
     
+    <EditText 
+        android:id="@+id/et_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
     <Button
         android:id="@+id/btn_1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="bind service" />
+        android:layout_weight="1"
+        android:text="Check" />
 
 </LinearLayout>
