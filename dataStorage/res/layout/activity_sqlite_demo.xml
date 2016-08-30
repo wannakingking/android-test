@@ -1,0 +1,120 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    tools:context="${relativePackage}.${activityClass}" >
+    
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        >
+	    <Button 
+	        android:id="@+id/btn_init_sql"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:text="Initilize"
+	        />
+		
+	    <Button 
+	        android:id="@+id/btn_del_sql"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:text="Del"
+	        />
+	</TableRow>
+	
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        >
+	    <Button 
+	        android:id="@+id/btn_query_sql"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:text="Query"
+	        />
+		
+	    <Button 
+	        android:id="@+id/btn_insert_sql"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:text="Insert"
+	        />
+		
+	    <Button 
+	        android:id="@+id/btn_update_sql"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:text="Update"
+	        />
+		
+	</TableRow>
+		
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        >
+		<EditText
+		    android:id="@+id/et_sql"
+		    android:layout_width="match_parent"
+		    android:layout_height="100dp"
+		    android:lines="4"
+		    android:layout_span="2"
+		    android:editable="false"
+		    />
+		
+	    <Button
+	        android:id="@+id/btn_exec_sql"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="Exec SQL" 
+	        android:focusable="true"
+	        android:focusableInTouchMode="true"
+	        />
+	 </TableRow>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="3">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+	        android:layout_weight="1"
+            android:gravity="center"
+            android:text="id"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+	        android:layout_weight="1"
+            android:gravity="center"
+            android:text="username"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+	        android:layout_weight="1"
+            android:gravity="center"
+            android:text="password"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+	<ListView
+	    android:id="@+id/lv_users"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:background="#00ff00"
+	    />
+</TableLayout>
