@@ -2,7 +2,7 @@ package me.ctrlor.ServiceServerDemo;
 
 interface IExpression
 {
-	int[] getNum();
+	int[] getNumbers();
 	char getOperator();
 	int getResult();
 }

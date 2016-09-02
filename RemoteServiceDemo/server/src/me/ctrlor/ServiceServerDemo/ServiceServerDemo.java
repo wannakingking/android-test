@@ -1,6 +1,9 @@
 package me.ctrlor.ServiceServerDemo;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.lang.Math;
 
 import me.ctrlor.ServiceServerDemo.IExpression.Stub;
 import android.app.Service;
@@ -12,19 +15,19 @@ import android.util.Log;
 public class ServiceServerDemo extends Service
 {
     // Define debugger tag
-    final static String TAG = "ctrlor-Service";
+    private static final String TAG = "ctrlor-service";
 
 	// number1 and number2
-	public static int[] iNum = {0, 0};
+	public static int[] randomNumbers = {0, 0};
 
     // The range of the number1 and number2 
-	private final static int[] iNumRange = {11,99};
+	private final static int[] rangeNumbers= {11,99};
 
     // The random operator
-	public static  char strOperator;
+	public static  char chOperator;
 
     // The range of the operators
-	private final static char[] strOperators = {'+', '-', 'x', '/'};
+	private final static char[] chOperators = {'+', '-', 'x', '/'};
 
     // The result of expressioin
 	public static int iResult;
@@ -36,15 +39,15 @@ public class ServiceServerDemo extends Service
 	public class ExpressionBinder extends Stub
 	{
 		@Override
-		public int[] getNum() throws RemoteException
+		public int[] getNumbers() throws RemoteException
 		{
-			return iNum;
+			return randomNumbers;
 		}
 
 		@Override
 		public char getOperator() throws RemoteException
 		{
-			return strOperator;
+			return chOperator;
 		}
 
 		@Override
@@ -61,8 +64,20 @@ public class ServiceServerDemo extends Service
 		super.onCreate();
         
         expressionBinder = new ExpressionBinder();
-        buildRandom();
-        calcResult();
+       
+        // Timer to random
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask()
+        {
+        	@Override
+        	public void run()
+        	{
+        		randomNumbers();
+        		randomOperator();
+        		calcResult();
+        	}
+        	
+        }, 0, 500);
 
 	}
 	
@@ -70,9 +85,8 @@ public class ServiceServerDemo extends Service
 	public IBinder onBind( Intent intent )
 	{
 		
-        buildRandom();
-        calcResult();
 		Log.d( TAG, "onBind(),return expression" );
+
 		return expressionBinder;
 	}
 
@@ -81,6 +95,7 @@ public class ServiceServerDemo extends Service
 	{
 		return false;
 	}
+
 	@Override
 	public void onDestroy()
 	{
@@ -88,44 +103,67 @@ public class ServiceServerDemo extends Service
 		Log.d( TAG, "onDestroy()" );
 	}
 	
-	// Create random expression
-	public void buildRandom()
+	// Random number
+	public int[] randomNumbers()
 	{
+		int[] range = rangeNumbers;
+		int iMin = Math.min(range[0], range[1]); 
+		int iMax = Math.max(range[0], range[1]);
+
+		int[] tmpNum = {0, 0};
 		Random random = new Random();
-        iNum[0] = random.nextInt( ( iNumRange[1]-iNumRange[0] )+1 ) + iNumRange[0];
-        iNum[1] = random.nextInt( ( iNumRange[1]-iNumRange[0] )+1 ) + iNumRange[0];
-        strOperator = strOperators[ random.nextInt(4) ];
+        tmpNum[0] = random.nextInt( ( iMax - iMin ) + 1 ) + iMin;
+        tmpNum[1] = random.nextInt( ( iMax - iMin ) + 1 ) + iMin;
         
-        Log.d(TAG, "iNum[0]:" + iNum[0] );
-        Log.d(TAG, "iNum[1]:" + iNum[1] );
-        Log.d(TAG, "strOperator:" + strOperator );
+        Log.d(TAG, "randNumbers()->tmpNum[0]:" + tmpNum[0] );
+        Log.d(TAG, "randNumbers()->tmpNum[1]:" + tmpNum[1] );
+        
+        return tmpNum;
 	}
 	
+	// Random strOperator
+	public char randomOperator()
+	{
+		char[] operators = chOperators;
+		Random random = new Random();
+
+		char c = operators[ random.nextInt(4) ];
+
+        Log.d(TAG, "randomOperator()->operator:" + c );
+
+		return c;
+	}
 
 	// Calc the result of expression
-	public void calcResult()
+	private int calcResult()
 	{
-		switch( strOperator )
+		int[] num = randomNumbers;
+		char operator = chOperator;
+		int result = 0;
+
+		switch(operator)
 		{
 		case '+':
-			iResult = iNum[0] + iNum[1];
+			result = num[0] + num[1];
 			break;
 		
 		case '-':
-			iResult = iNum[0] - iNum[1];
+			result = num[0] - num[1];
 			break;
 			
 		case 'x':
-			iResult = iNum[0] * iNum[1];
+			result = num[0] * num[1];
 			break;
 			
 		case '/':
-			iResult = iNum[0] / iNum[1];
+			result = num[0] / num[1];
 			break;
 		}
 		
 		// Print expression
-		Log.d( TAG, iNum[0] + " " + strOperator + " " + iNum[1] + " = " +
-				iResult );
+		Log.d( TAG + "-print expression", num[0] + " " + operator 
+				+ " " + num[1] + " = " + result );
+		
+		return result;
 	}
 }

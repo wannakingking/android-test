@@ -29,28 +29,30 @@ public class MainActivity extends Activity {
 	private EditText et_1;
 	private Button btn_1;
     private IExpression expressionBinder;
+    private ExpressionServiceConnection mConnection;
     
     private String strExpression;
     private int iResult;
 
-    // Service connnector
-    final ServiceConnection mConnection = new ServiceConnection()
+    // New class ExpressionServiceConnection 
+    class ExpressionServiceConnection implements ServiceConnection
     {
         @Override
         public void onServiceConnected( ComponentName name, 
                 IBinder service )
         {
             expressionBinder = IExpression.Stub.asInterface( service );
-            Log.d( TAG, "in onServiceConnected" );
-            thread.start();
+            Log.d( TAG, "onServiceConnected()" );
+            //thread.start();
         }
 
         @Override
         public void onServiceDisconnected( ComponentName name )
         {
             expressionBinder = null;
+            Log.d( TAG, "onServiceDisconnected()." );
         }
-    };
+    }
 
 
 
@@ -64,12 +66,14 @@ public class MainActivity extends Activity {
 		tv_1 = (TextView) findViewById(R.id.tv_1);
 		et_1 = (EditText) findViewById(R.id.et_1);
 
+		mConnection = new ExpressionServiceConnection();
 
     	Intent mIntent = new Intent();
 	    mIntent.setAction( "ctrlor.intent.action.EXPRESSION" );
-	    bindService( mIntent, mConnection, Context.BIND_AUTO_CREATE );
+	    boolean ret = bindService( mIntent, mConnection, Context.BIND_AUTO_CREATE );
 
 		Log.d( TAG, "expressionBinder:" + expressionBinder );
+		Log.d( TAG, "bindService:" + ret);
 		
 	}
 
@@ -106,7 +110,7 @@ public class MainActivity extends Activity {
     			char strOperator = ' ';
     			String strExpression = "";
 		    	
-		    	iNum 			= expressionBinder.getNum();
+		    	iNum 			= expressionBinder.getNumbers();
 		    	strOperator 	= expressionBinder.getOperator();
 		    	strExpression 	= iNum[0] + strOperator + iNum[1] + " = ";
 		    	int iResult 	= expressionBinder.getResult();
@@ -200,7 +204,10 @@ public class MainActivity extends Activity {
 	public void onDestroy()
 	{
 		super.onDestroy();
-			this.unbindService( mConnection );
-		Log.d( TAG, "onDestroy" );
+
+		unbindService( mConnection );
+		mConnection = null;
+
+		Log.d( TAG, "onDestroy()" );
 	}
 }
