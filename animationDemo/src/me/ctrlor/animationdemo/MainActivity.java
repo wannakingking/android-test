@@ -2,14 +2,20 @@ package me.ctrlor.animationdemo;
 
 import android.app.Activity;
 import android.os.Bundle;
-
 import android.content.Intent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity 
+public class MainActivity extends Activity implements OnClickListener
 {
 
+	Button btnTrans;
+	Button btnTween;
+	Button btnFrame;
+	Button btnProperty;
+	Button btnView;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
     {
@@ -18,74 +24,62 @@ public class MainActivity extends Activity
 		setTitle("Animation Demo");
 
         // Start transition drawable animation demo
-        Button btnTrans = (Button) findViewById(R.id.btn_transition_drawable_demo);
-        btnTrans.setOnClickListener(new Button.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent  = new Intent(MainActivity.this,
-                    TransitionDrawableDemo.class);
-                startActivity(intent);
-            }
-        });
+        btnTrans 	= (Button) findViewById(R.id.btn_transition_drawable_demo);
+        btnTrans.setOnClickListener(this);
 
-            
-        // Start tween animation demo
-        Button btnTween = (Button) findViewById(R.id.btn_tween_animation_demo);
-        btnTween.setOnClickListener(new Button.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent  = new Intent(MainActivity.this,
-                    TweenAnimationDemo.class);
-                startActivity(intent);
-            }
-        });
+        btnTween 	= (Button) findViewById(R.id.btn_tween_animation_demo);
+        btnTween.setOnClickListener(this);
 
-        // Start frame animation demo
-        Button btnFrame = (Button) findViewById(R.id.btn_frame_animation_demo);
-        btnFrame.setOnClickListener(new Button.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent  = new Intent(MainActivity.this,
-                    FrameAnimationDemo.class);
-                startActivity(intent);
-            }
-        });
+        btnFrame 	= (Button) findViewById(R.id.btn_frame_animation_demo);
+        btnFrame.setOnClickListener(this);
 
-        // Start property animation demo
-        Button btnProperty = (Button) findViewById(R.id.btn_property_animation_demo);
-        btnProperty.setOnClickListener(new Button.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent  = new Intent(MainActivity.this,
-                    PropertyAnimationDemo.class);
-                startActivity(intent);
-            }
-        });
+        btnProperty = (Button) findViewById(R.id.btn_property_animation_demo);
+        btnProperty.setOnClickListener(this);
 
+        btnView		= (Button) findViewById(R.id.btn_textview_animation_demo);
+        btnView.setOnClickListener(this);
+        
+        btnProperty.callOnClick();
 
-        // Start TextView animation demo
-        Button btnTv= (Button) findViewById(R.id.btn_textview_animation_demo);
-        btnTv.setOnClickListener(new Button.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent  = new Intent(MainActivity.this,
-                    TextViewAnimationDemo.class);
-                startActivity(intent);
-            }
-        });
-
-                Intent intent  = new Intent(MainActivity.this,
-                    TextViewAnimationDemo.class);
-                startActivity(intent);
+	}
+	
+	public void onClick(View v)
+	{
+		Intent intent = null;
+		switch(v.getId())
+		{
+			case R.id.btn_transition_drawable_demo:
+				intent = new Intent(this,
+						TransitionDrawableDemo.class);
+				break;
+				
+			case R.id.btn_tween_animation_demo:
+				intent = new Intent(this,
+						TweenAnimationDemo.class);
+				break;
+				
+			case R.id.btn_frame_animation_demo:
+				intent = new Intent(this,
+						FrameAnimationDemo.class);
+				break;
+				
+			case R.id.btn_property_animation_demo:
+				intent = new Intent(this,
+						PropertyAnimationDemo.class);
+				break;
+				
+			case R.id.btn_textview_animation_demo:
+				intent = new Intent(this,
+						ViewAnimationDemo.class);
+				break;
+				
+			default:
+				break;
+		}
+		
+		if(intent != null)
+		{
+			startActivity(intent);
+		}
 	}
 }

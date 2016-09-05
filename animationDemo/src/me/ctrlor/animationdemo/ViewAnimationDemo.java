@@ -12,14 +12,14 @@ import android.widget.TextView;
 
 import android.util.Log;
 
-public class TextViewAnimationDemo extends Activity {
+public class ViewAnimationDemo extends Activity {
 
-	private final static String TAG = "TextView Animation demo";
+	private final static String TAG = "View Animation demo";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_textview_animation_demo);
+		setContentView(R.layout.activity_view_animation_demo);
 		setTitle("TextView animation demo");
 		
         // Animation by anim xml

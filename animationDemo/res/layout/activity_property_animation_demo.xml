@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/btn_value_animator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Value animator"
+            />
+        <Button
+            android:id="@+id/btn_object_animator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Object animator"
+            />
+        <Button
+            android:id="@+id/btn_animator_set"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Animator set"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/btn_view_property_animator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="View property animator"
+            />
+        <Button
+            android:id="@+id/btn_key_frames_animation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Key frames animation"
+            />
+        <Button
+            android:id="@+id/btn_view_group_animation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="View group animation"
+            />
+    </TableRow>
+
+    <ImageView
+       android:id="@+id/image"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:src="@drawable/image_1"
+   	/>
+</TableLayout>
+
