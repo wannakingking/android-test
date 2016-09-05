@@ -15,7 +15,7 @@ import android.util.Log;
 public class ServiceServerDemo extends Service
 {
     // Define debugger tag
-    private static final String TAG = "ctrlor-service";
+    private static final String TAG = "ctrlor-random-server";
 
 	// number1 and number2
 	public static int[] randomNumbers = {0, 0};
@@ -27,13 +27,19 @@ public class ServiceServerDemo extends Service
 	public static  char chOperator;
 
     // The range of the operators
-	private final static char[] chOperators = {'+', '-', 'x', '/'};
+	private final static char[] chOperators = {'+', '-', 'x'};
 
     // The result of expressioin
 	public static int iResult;
 	
+	// The expression
+	public static String strExpression;
+	
     // Interface object
-	public ExpressionBinder expressionBinder;
+	public static ExpressionBinder expressionBinder;
+	
+	// Timer
+	Timer timer = new Timer();
 	
 	// Define interface
 	public class ExpressionBinder extends Stub
@@ -55,6 +61,13 @@ public class ServiceServerDemo extends Service
 		{
 			return iResult;
 		}
+		
+		@Override
+		public String getExpression() throws RemoteException
+		{
+			return strExpression;
+		}
+		
 	}
 
     // Main code
@@ -66,7 +79,6 @@ public class ServiceServerDemo extends Service
         expressionBinder = new ExpressionBinder();
        
         // Timer to random
-        Timer timer = new Timer();
         timer.schedule(new TimerTask()
         {
         	@Override
@@ -75,6 +87,11 @@ public class ServiceServerDemo extends Service
         		randomNumbers();
         		randomOperator();
         		calcResult();
+        		
+        		strExpression = Integer.toString(randomNumbers[0])
+        				+ chOperator + randomNumbers[1];
+        		Log.d(TAG, "timer to print expression:" + strExpression
+        				+ "=" + iResult);
         	}
         	
         }, 0, 500);
@@ -100,42 +117,42 @@ public class ServiceServerDemo extends Service
 	public void onDestroy()
 	{
 		super.onDestroy();
+		timer.cancel();
+
 		Log.d( TAG, "onDestroy()" );
 	}
 	
 	// Random number
-	public int[] randomNumbers()
+	public void randomNumbers()
 	{
 		int[] range = rangeNumbers;
 		int iMin = Math.min(range[0], range[1]); 
 		int iMax = Math.max(range[0], range[1]);
 
-		int[] tmpNum = {0, 0};
 		Random random = new Random();
-        tmpNum[0] = random.nextInt( ( iMax - iMin ) + 1 ) + iMin;
-        tmpNum[1] = random.nextInt( ( iMax - iMin ) + 1 ) + iMin;
+        randomNumbers[0] = random.nextInt( ( iMax - iMin ) + 1 ) + iMin;
+        randomNumbers[1] = random.nextInt( ( iMax - iMin ) + 1 ) + iMin;
         
-        Log.d(TAG, "randNumbers()->tmpNum[0]:" + tmpNum[0] );
-        Log.d(TAG, "randNumbers()->tmpNum[1]:" + tmpNum[1] );
+        Log.d(TAG, "randNumbers()->randomNumbers[0]:" + randomNumbers[0] );
+        Log.d(TAG, "randNumbers()->randomNumbers[1]:" + randomNumbers[1] );
         
-        return tmpNum;
+        
 	}
 	
 	// Random strOperator
-	public char randomOperator()
+	public void randomOperator()
 	{
 		char[] operators = chOperators;
 		Random random = new Random();
 
-		char c = operators[ random.nextInt(4) ];
+		chOperator = operators[ random.nextInt(chOperators.length) ];
 
-        Log.d(TAG, "randomOperator()->operator:" + c );
+        Log.d(TAG, "randomOperator()->operator:" + chOperator );
 
-		return c;
 	}
 
 	// Calc the result of expression
-	private int calcResult()
+	private void calcResult()
 	{
 		int[] num = randomNumbers;
 		char operator = chOperator;
@@ -160,10 +177,6 @@ public class ServiceServerDemo extends Service
 			break;
 		}
 		
-		// Print expression
-		Log.d( TAG + "-print expression", num[0] + " " + operator 
-				+ " " + num[1] + " = " + result );
-		
-		return result;
+		iResult = result;
 	}
 }

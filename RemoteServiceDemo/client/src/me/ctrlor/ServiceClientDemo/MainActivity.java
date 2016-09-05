@@ -1,8 +1,10 @@
 package me.ctrlor.ServiceClientDemo;
 
-import me.ctrlor.ServiceClientDemo.IExpression;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import me.ctrlor.ServiceServerDemo.IExpression;
 import android.app.Activity;
-import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,28 +13,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.RemoteException;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-	final static String TAG = "MainActivity";
+	final static String TAG = "ctrlor-random-client";
 	
 	private TextView tv_1;
 	private EditText et_1;
 	private Button btn_1;
-    private IExpression expressionBinder;
+    private static IExpression expressionBinder;
     private ExpressionServiceConnection mConnection;
     
-    private String strExpression;
-    private int iResult;
 
     // New class ExpressionServiceConnection 
     class ExpressionServiceConnection implements ServiceConnection
@@ -43,7 +39,9 @@ public class MainActivity extends Activity {
         {
             expressionBinder = IExpression.Stub.asInterface( service );
             Log.d( TAG, "onServiceConnected()" );
-            //thread.start();
+            Log.d( TAG, "expressionBinder:" + expressionBinder);
+            mHandler.sendEmptyMessage(0x1024);
+            //buildView();
         }
 
         @Override
@@ -70,33 +68,133 @@ public class MainActivity extends Activity {
 
     	Intent mIntent = new Intent();
 	    mIntent.setAction( "ctrlor.intent.action.EXPRESSION" );
-	    boolean ret = bindService( mIntent, mConnection, Context.BIND_AUTO_CREATE );
+	    bindService( mIntent, mConnection, Context.BIND_AUTO_CREATE );
 
-		Log.d( TAG, "expressionBinder:" + expressionBinder );
-		Log.d( TAG, "bindService:" + ret);
 		
 	}
 
 
+    // The listener of the button
+    private Button.OnClickListener compareResultListener = 
+    		new Button.OnClickListener()
+    {
+    	@Override
+    	public void onClick( View v )
+    	{
+    		try
+    		{
+	    		int iResult = expressionBinder.getResult();
+			 	int iInputValue = Integer.parseInt(et_1.getText().toString());
+			  		
+		  		if( iInputValue == iResult )
+		  		{
+		 			btn_1.setText( "Yes: " + iResult);
+	    		}
+	    		else
+	    		{
+	    			btn_1.setText( "No: " + iResult);
+	    		}
+	
+		  		// Refresh every 3s
+	    		new Timer().schedule(new TimerTask()
+	    		{
+	    			@Override
+	    			public void run()
+	    			{
+	    				mHandler.sendEmptyMessage(0x1024);
+	    			}
+	    		}, 0, 10000);
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    	}
+    };
+    
+	
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
 
+		unbindService( mConnection );
+		mConnection = null;
+
+		Log.d( TAG, "onDestroy()" );
+	}
+	
     // Handler message
     private Handler mHandler = new Handler()
     {
     	@Override
     	public void handleMessage(Message msg)
     	{
+
     		if(msg.what == 0x1024)
     		{
-    			strExpression = (String)msg.obj;
-    			iResult = msg.arg1;
     			
-    			tv_1.setText(strExpression);
+    			try
+    			{
 
-		    	Log.d(TAG, "strExpression:" + strExpression);
-		    	Log.d(TAG, "iResult:" + iResult);
-    		}
+    				String strExpression = expressionBinder.getExpression();
+
+		    		tv_1.setText(strExpression);
+		    		Log.d(TAG, "strExpression():" + strExpression);
+		
+    			}
+		    		catch (Exception e)
+		    		{
+		    			e.printStackTrace();
+		    			Log.d(TAG, "throw remote exception");
+		    		}
+    			}
     	}
     };
+    
+    /*
+    public void buildView()
+    {
+    	try
+    	{
+
+            Log.d( TAG, "buildView()->expressionBinder:" + expressionBinder);
+
+    		String strExpression = expressionBinder.getExpression();
+    		int iResult = expressionBinder.getResult();
+
+    		tv_1.setText(strExpression);
+    		Log.d(TAG, "strExpression():" + strExpression);
+
+    		int iInputValue = Integer.parseInt(et_1.getText().toString());
+    		
+    		if( iInputValue == iResult )
+    		{
+    			btn_1.setText( "Yes: " + iResult);
+    		}
+    		else
+    		{
+    			btn_1.setText( "No: " + iResult);
+    		}
+
+    				
+    		String string = tv_1.getText().toString();
+    		Log.d(TAG, "tv_1:" + string);
+    				
+    		string = btn_1.getText().toString();
+    		Log.d(TAG, "btn_1:" + string);
+
+    		}
+    		catch (Exception e)
+    		{
+    			e.printStackTrace();
+    			Log.d(TAG, "buildView() throw exception");
+    		}
+    	
+    }
+    */
+    
+    /*
     // Query expression and result
     Thread thread = new Thread(new Runnable()
     {
@@ -133,7 +231,7 @@ public class MainActivity extends Activity {
 	
 	    }
     });
-
+*/
     /*
 	// Building layout and widget views.
     public void buildView() 
@@ -168,46 +266,4 @@ public class MainActivity extends Activity {
         		TableLayout.LayoutParams.WRAP_CONTENT ));
     }
    */ 
-    // The listener of the button
-    private Button.OnClickListener compareResultListener = 
-    		new Button.OnClickListener()
-    {
-    	@Override
-    	public void onClick( View v )
-    	{
-    		try
-    		{
-	    		
-	    		int iInputValue = Integer.parseInt(et_1.getText().toString());
-	    		
-	    		if( iInputValue == iResult )
-	    		{
-	    			btn_1.setText( "Yes: " + iResult );
-	    		}
-	    		else
-	    		{
-	    			btn_1.setText( "No: " + iResult );
-	    		}
-
-    		}
-    		catch (Exception e)
-    		{
-    			e.printStackTrace();
-    		}
-    		
-	    		
-    	}
-    };
-    
-	
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-
-		unbindService( mConnection );
-		mConnection = null;
-
-		Log.d( TAG, "onDestroy()" );
-	}
 }
