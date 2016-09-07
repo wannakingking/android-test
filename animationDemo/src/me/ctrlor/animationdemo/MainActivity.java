@@ -39,7 +39,6 @@ public class MainActivity extends Activity implements OnClickListener
         btnView		= (Button) findViewById(R.id.btn_textview_animation_demo);
         btnView.setOnClickListener(this);
         
-        btnProperty.callOnClick();
 
 	}
 	

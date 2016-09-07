@@ -1,24 +1,30 @@
 package me.ctrlor.animationdemo;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.Keyframe;
+import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 public class PropertyAnimationDemo extends Activity {
 
 	ImageView mImage;
+	ViewGroup mViewGroup;
+    boolean isBool = true;
 
     Button btnValueAnimator;
     Button btnObjectAnimator;
@@ -35,7 +41,12 @@ public class PropertyAnimationDemo extends Activity {
 		setTitle("Property aniamtion demo");
 		setContentView(R.layout.activity_property_animation_demo);
 		
-        mImage = (ImageView) findViewById(R.id.image);
+		mImage = new ImageView(this);
+	    mImage.setImageDrawable(ContextCompat.getDrawable(
+	     				getBaseContext(), R.drawable.image_1));
+
+	    mViewGroup = (ViewGroup) findViewById(R.id.layout_property_animation);
+	    mViewGroup.addView(mImage);
 
         // 1, Value animator
         btnValueAnimator = (Button) findViewById(R.id.btn_value_animator);
@@ -223,13 +234,74 @@ public class PropertyAnimationDemo extends Activity {
             }
         });
 
-        // 6, View group animation
+        /**
+         *  6, View group animation
+         *  1)Add 'android:animateLayoutChanges="true" ' to the layout.
+         */
         btnViewGroup = (Button) findViewById(R.id.btn_view_group_animation);
         btnViewGroup.setOnClickListener(new Button.OnClickListener()
         {
         	@Override
         	public void onClick(View v)
         	{
+        		try
+        		{
+        			// Disappearing
+        			LayoutTransition transition = new LayoutTransition();
+        			mViewGroup.setLayoutTransition(transition);
+        			
+        			if(isBool)
+        			{
+	        			ObjectAnimator animator = ObjectAnimator.ofInt(null, "rotationY", 0, 360);
+	        			animator.setDuration(transition.getDuration(
+	        					LayoutTransition.DISAPPEARING));
+	
+	        			transition.setAnimator(LayoutTransition.DISAPPEARING,  animator);
+	        			animator.addListener(new AnimatorListenerAdapter()
+	        			{
+							@Override
+							public void onAnimationStart(Animator animation) {
+								// TODO Auto-generated method stub
+								
+							}
+	        			});
+	        			
+	        			mImage.setVisibility(View.INVISIBLE);
+        			}
+        			// If isBool == false
+        			else
+        			{
+        				// Appearing
+        				Keyframe kf0 = Keyframe.ofFloat(0f, 360f);
+        				Keyframe kf1 = Keyframe.ofFloat(1f, 0f);
+        				PropertyValuesHolder pvh = PropertyValuesHolder.ofKeyframe(
+        						"rotation", kf0, kf1);
+
+	        			ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(
+	        					this, pvh);
+	        			animator.setDuration(transition.getDuration(
+	        					LayoutTransition.APPEARING));
+	
+	        			transition.setAnimator(LayoutTransition.APPEARING,  animator);
+	        			animator.addListener(new AnimatorListenerAdapter()
+	        			{
+							@Override
+							public void onAnimationEnd(Animator animation) {
+								// TODO Auto-generated method stub
+								
+							}
+	        			}
+	        			);
+
+	        			mImage.setVisibility(View.VISIBLE);
+        			}
+        			
+        			isBool = !isBool;
+        		}
+        		catch(Exception e)
+        		{
+        			e.printStackTrace();
+        		}
         		
         	}
         });

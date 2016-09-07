@@ -20,7 +20,7 @@ public class ViewAnimationDemo extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_animation_demo);
-		setTitle("TextView animation demo");
+		setTitle("View animation demo");
 		
         // Animation by anim xml
 		Button btnDo1 = (Button) findViewById(R.id.btn_do_by_anim);
