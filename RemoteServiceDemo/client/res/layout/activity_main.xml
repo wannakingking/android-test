@@ -1,31 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
     tools:context="${relativePackage}.${activityClass}" >
 
     <TextView
         android:id="@+id/tv_1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:gravity="end"
         android:text="@string/hello_world" 
         android:textSize="20sp"
         />
     
-    <EditText 
-        android:id="@+id/et_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
-    <Button
-        android:id="@+id/btn_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Check" />
-
 </LinearLayout>

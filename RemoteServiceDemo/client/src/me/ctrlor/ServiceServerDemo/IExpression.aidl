@@ -4,6 +4,6 @@ interface IExpression
 {
 	int[] getNumbers();
 	char getOperator();
-	int getResult();
+	float getResult();
 	String getExpression();
 }

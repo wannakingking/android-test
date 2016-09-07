@@ -27,10 +27,10 @@ public class ServiceServerDemo extends Service
 	public static  char chOperator;
 
     // The range of the operators
-	private final static char[] chOperators = {'+', '-', 'x'};
+	private final static char[] chOperators = {'+', '-', 'x', '/'};
 
     // The result of expressioin
-	public static int iResult;
+	public static float iResult;
 	
 	// The expression
 	public static String strExpression;
@@ -57,7 +57,7 @@ public class ServiceServerDemo extends Service
 		}
 
 		@Override
-		public int getResult() throws RemoteException
+		public float getResult() throws RemoteException
 		{
 			return iResult;
 		}
@@ -78,7 +78,13 @@ public class ServiceServerDemo extends Service
         
         expressionBinder = new ExpressionBinder();
        
-        // Timer to random
+
+	}
+	
+	@Override
+	public IBinder onBind( Intent intent )
+	{
+        // Timer to random when binding
         timer.schedule(new TimerTask()
         {
         	@Override
@@ -95,12 +101,6 @@ public class ServiceServerDemo extends Service
         	}
         	
         }, 0, 500);
-
-	}
-	
-	@Override
-	public IBinder onBind( Intent intent )
-	{
 		
 		Log.d( TAG, "onBind(),return expression" );
 
@@ -110,6 +110,7 @@ public class ServiceServerDemo extends Service
 	@Override
 	public boolean 	onUnbind( Intent intent )
 	{
+		timer.cancel();
 		return false;
 	}
 
@@ -117,7 +118,6 @@ public class ServiceServerDemo extends Service
 	public void onDestroy()
 	{
 		super.onDestroy();
-		timer.cancel();
 
 		Log.d( TAG, "onDestroy()" );
 	}
@@ -156,7 +156,7 @@ public class ServiceServerDemo extends Service
 	{
 		int[] num = randomNumbers;
 		char operator = chOperator;
-		int result = 0;
+		float result = 0;
 
 		switch(operator)
 		{
@@ -173,7 +173,7 @@ public class ServiceServerDemo extends Service
 			break;
 			
 		case '/':
-			result = num[0] / num[1];
+			result = (float) num[0] / (float) num[1];
 			break;
 		}
 		
