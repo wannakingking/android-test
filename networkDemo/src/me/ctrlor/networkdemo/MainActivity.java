@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
-public class MainActivity extends Activity implements OnClickListener{
+public class MainActivity extends Activity implements OnClickListener
+{
 
 	Button btn1;
 	Button btn2;
@@ -16,7 +17,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	Button btn5;
 	Button btn6;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setTitle("Network Demo");
@@ -38,6 +40,9 @@ public class MainActivity extends Activity implements OnClickListener{
 
 		btn6 = (Button) findViewById(R.id.btn_url_connection);
 		btn6.setOnClickListener(this);
+		
+		btn1.callOnClick();
+		 
 	}
 	
 	@Override
@@ -68,6 +73,9 @@ public class MainActivity extends Activity implements OnClickListener{
 
 		case 6:
 			mIntent = new Intent(this, UrlConnectionMethod.class);
+			break;
+		
+		default:
 			break;
 		}
 		

@@ -26,6 +26,11 @@
         </activity>
         
         <activity android:name=".UrlConnectionMethod" />
+        <activity android:name=".GetMethod" />
+        <activity android:name=".PostMethod" />
+        <activity android:name=".SocketMethod" />
+        <activity android:name=".HttpMethod" />
+        <activity android:name=".UdpMethod" />
     </application>
 
 </manifest>
