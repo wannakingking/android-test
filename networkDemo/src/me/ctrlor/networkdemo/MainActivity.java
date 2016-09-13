@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements OnClickListener
 		btn6.setOnClickListener(this);
 		
 		btn2.callOnClick();
+		 
 	}
 	
 	@Override
