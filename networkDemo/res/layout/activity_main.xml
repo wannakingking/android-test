@@ -6,7 +6,7 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <Button
-        android:id="@+id/btn_url_connection"
+        android:id="@+id/btn_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="URL connection demo" />
@@ -15,13 +15,13 @@
         android:id="@+id/btn_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="btn1" />
+        android:text="Get method" />
 
     <Button
         android:id="@+id/btn_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="btn1" />
+        android:text="Post method" />
 
     <Button
         android:id="@+id/btn_4"

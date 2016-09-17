@@ -23,26 +23,25 @@ public class MainActivity extends Activity implements OnClickListener
 		setContentView(R.layout.activity_main);
 		setTitle("Network Demo");
 		
-		btn1 = (Button) findViewById(R.id.btn_url_connection);
+		btn1 = (Button) findViewById(R.id.btn_1);
 		btn1.setOnClickListener(this);
 
-		btn2 = (Button) findViewById(R.id.btn_url_connection);
+		btn2 = (Button) findViewById(R.id.btn_2);
 		btn2.setOnClickListener(this);
 
-		btn3 = (Button) findViewById(R.id.btn_url_connection);
+		btn3 = (Button) findViewById(R.id.btn_3);
 		btn3.setOnClickListener(this);
 
-		btn4 = (Button) findViewById(R.id.btn_url_connection);
+		btn4 = (Button) findViewById(R.id.btn_4);
 		btn4.setOnClickListener(this);
 
-		btn5 = (Button) findViewById(R.id.btn_url_connection);
+		btn5 = (Button) findViewById(R.id.btn_5);
 		btn5.setOnClickListener(this);
 
-		btn6 = (Button) findViewById(R.id.btn_url_connection);
+		btn6 = (Button) findViewById(R.id.btn_6);
 		btn6.setOnClickListener(this);
 		
-		btn1.callOnClick();
-		 
+		btn2.callOnClick();
 	}
 	
 	@Override
@@ -51,16 +50,16 @@ public class MainActivity extends Activity implements OnClickListener
 		Intent mIntent = null;
 		switch(v.getId())
 		{
-		case R.id.btn_url_connection:
+		case R.id.btn_1:
 			mIntent = new Intent(this, UrlConnectionMethod.class);
 			break;
 
-		case 2:
-			mIntent = new Intent(this, UrlConnectionMethod.class);
+		case R.id.btn_2:
+			mIntent = new Intent(this, GetMethod.class);
 			break;
 
-		case 3:
-			mIntent = new Intent(this, UrlConnectionMethod.class);
+		case R.id.btn_3:
+			mIntent = new Intent(this, GetMethod.class);
 			break;
 
 		case 4:
