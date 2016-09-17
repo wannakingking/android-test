@@ -16,7 +16,7 @@
             />
 
         <Button 
-            android:id="@+id/btn_mp3_demo"
+            android:id="@+id/btn_player_demo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,7 +24,7 @@
             />
 
         <Button 
-            android:id="@+id/btn_upload_data_demo"
+            android:id="@+id/btn_upload_info_demo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
