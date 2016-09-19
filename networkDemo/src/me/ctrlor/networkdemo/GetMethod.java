@@ -1,5 +1,8 @@
 package me.ctrlor.networkdemo;
 
+import me.ctrlor.common.*;
+
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
@@ -36,7 +40,7 @@ public class GetMethod extends Activity
 	
 	private String addressJsonList  = "http://192.168.0.11/test/users.json";
 	private String addressPlayer	= "http://192.168.0.11/test/media/example.mp3";
-	private String addressUploadList= "http://192.168.0.11/test/uploadinfo.php";
+	private String addressUploadInfo= "http://192.168.0.11/test/uploadinfo.php";
 
 
 	@Override
@@ -55,6 +59,35 @@ public class GetMethod extends Activity
 		Button btnJsonList 	 = (Button) findViewById(R.id.btn_json_list_demo);
 		Button btnPlayer   	 = (Button) findViewById(R.id.btn_player_demo);
 		Button btnUploadInfo = (Button) findViewById(R.id.btn_upload_info_demo);
+		
+		btnJsonList.setOnClickListener(new Button.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				JsonListDemo mJsonList = new JsonListDemo(addressJsonList);
+				mJsonList.buildList();
+			}
+		});
+
+		btnPlayer.setOnClickListener(new Button.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				PlayerDemo mPlayer = new PlayerDemo(addressPlayer);
+			}
+		});
+
+		btnUploadInfo.setOnClickListener(new Button.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				UploadInfoDemo mUploadInfo = new UploadInfoDemo(addressUploadInfo);
+			}
+		});
+
 	}
 	
 	private void hideAllLayout()
@@ -64,12 +97,13 @@ public class GetMethod extends Activity
 		layoutUploadInfo.setVisibility(View.GONE);
 	}
 	
-	/** Class of json list 
+	/** 
+	 * Class of json list 
 	 * 
 	 * @author ctrlor
 	 *
 	 */
-	class JsonListDemo
+	public class JsonListDemo
 	{
 		private String address;
 		private ListView listView;
@@ -125,6 +159,7 @@ public class GetMethod extends Activity
 					{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+						Log.d(TAG, "URL error");
 					}
 					
 				}
@@ -143,15 +178,21 @@ public class GetMethod extends Activity
 		
 	} 
 
-	/** Class of mp3 player
+	/** 
+	 * Class of mp3 player
 	 * 
 	 * @author ctrlor
 	 * 
 	 */
-	class PlayerDemo
+	public class PlayerDemo
 	{
+        /* The url string of the mp3 */
 		private String address;
 		
+        /* The tmp file path of the mp3 stored */
+        private String path;
+
+        /* Image button */
 		private Button btnPlay;
 		private Button btnPause;
 		private Button btnReset;
@@ -159,29 +200,91 @@ public class GetMethod extends Activity
 		
 		public PlayerDemo(String strAddr)
 		{
+			this.address = strAddr;
+
 			hideAllLayout();
 			layoutPlayer.setVisibility(View.VISIBLE); 
 
-			this.address = strAddr;
-			
 			btnPlay 	= (Button) findViewById(R.id.btn_player_play);
 			btnPause 	= (Button) findViewById(R.id.btn_player_pause);
 			btnReset	= (Button) findViewById(R.id.btn_player_reset);
 			btnStop		= (Button) findViewById(R.id.btn_player_stop);
+            
+            setButtonListener();
+        }
+        
+        private void setButtonListener()
+        {
+            /**
+             * Button 'Play'
+             */
+			btnPlay.setOnClickListener(new Button.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    
+                }
+            }
+
+            /**
+             * Button 'Pause'
+             */
+			btnPause.setOnClickListener(new Button.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    
+                }
+            }
+
+            /**
+             * Button 'Reset'
+             */
+			btnReset.setOnClickListener(new Button.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    
+                }
+            }
+
+            /**
+             * Button 'Stop'
+             */
+			btnStop.setOnClickListener(new Button.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    
+                }
+            }
 
 		} 
+		
 	} 
 
-	/** Class of json list 
+	/** 
+	 * Class of json list 
 	 * 
 	 * @author ctrlor
 	 *
 	 */
-	class UploadInfoDemo
+	public class UploadInfoDemo
 	{
-		private void test()
+		private String address;
+		
+		public UploadInfoDemo(String strAddr)
 		{
-			layoutJsonList.setVisibility(View.GONE); 
+			hideAllLayout();
+			layoutUploadInfo.setVisibility(View.VISIBLE); 
+			
+			this.address = strAddr;
 		} 
 	} 
+	
+	
 }
