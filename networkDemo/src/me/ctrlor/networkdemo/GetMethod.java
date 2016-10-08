@@ -53,7 +53,7 @@ public class GetMethod extends Activity
 	/******************** Player ********************/
 	private String currentTempFilePath = "";
 	private MediaPlayer mPlayer;
-	private boolean bReleased = false;
+	private boolean bStopped = false;
 	private boolean bPause 	  = false;
 
 
@@ -185,7 +185,7 @@ public class GetMethod extends Activity
 	private void showPlayer()
 	{
 
-		Button btnPlay 	= (Button) findViewById(R.id.btn_player_play);
+		ImageButton btnPlay = (ImageButton) findViewById(R.id.btn_player_play);
 		btnPlay.setOnClickListener(new ImageButton.OnClickListener()
         {
             @Override
@@ -195,7 +195,7 @@ public class GetMethod extends Activity
             }
         });
 
-		Button btnPause	= (Button) findViewById(R.id.btn_player_pause);
+		ImageButton btnPause = (ImageButton) findViewById(R.id.btn_player_pause);
 		btnPause.setOnClickListener(new Button.OnClickListener()
         {
             @Override
@@ -203,9 +203,9 @@ public class GetMethod extends Activity
             {
             	if(mPlayer != null)
             	{
-            		if(bReleased == false)
+            		if(bStopped == false)
             		{
-            			if(bPause == false)
+            			if(mPlayer.isPlaying())
             			{
             				mPlayer.pause();
             				bPause = true;
@@ -220,13 +220,13 @@ public class GetMethod extends Activity
             }
         });
 
-		Button btnReset	= (Button) findViewById(R.id.btn_player_reset);
+		ImageButton btnReset = (ImageButton) findViewById(R.id.btn_player_reset);
 		btnReset.setOnClickListener(new Button.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                 if(bReleased == false)
+                 if(bStopped == false)
                  {
                 	 if(mPlayer != null)
                 	 {
@@ -237,7 +237,7 @@ public class GetMethod extends Activity
             }
         });
 
-		Button btnStop	= (Button) findViewById(R.id.btn_player_stop);
+		ImageButton btnStop	= (ImageButton) findViewById(R.id.btn_player_stop);
 		btnStop.setOnClickListener(new Button.OnClickListener()
         {
             @Override
@@ -247,11 +247,13 @@ public class GetMethod extends Activity
             	{
 	            	if(mPlayer != null)
 	            	{
-	            		if(bReleased == false)
+	            		if(bStopped == false)
 	            		{
 	            			mPlayer.stop();
-	            			mPlayer.release();
-	            			bReleased = true;
+	            			//mPlayer.release();
+	            			//mPlayer = null;
+
+	            			bStopped = true;
 	            		}
 	            	}
             	}
@@ -270,11 +272,24 @@ public class GetMethod extends Activity
 		{
 			if(mPlayer != null)
 			{
-				mPlayer.start();
+				// After pause
+				if(bStopped == false)
+				{
+					mPlayer.start();
+				}
+				// After stop
+				else
+				{
+					mPlayer.prepareAsync();
+				}
+
 				return;
 			}
 			
 			mPlayer = new MediaPlayer();
+			
+			Log.d(TAG_PLAYER, "mPlayer is new inited object now!");
+
 			mPlayer.setAudioStreamType(2);
 			
 			// Error listener
@@ -321,6 +336,14 @@ public class GetMethod extends Activity
 				public void onPrepared(MediaPlayer mp) {
 					// TODO Auto-generated method stub
 					Log.d(TAG_PLAYER, "Prepared listener");
+					
+					if(bStopped == true)
+					{
+						mPlayer.seekTo(0);
+						bStopped = false;
+					}
+
+					mp.start();
 				}
 			});
 			
@@ -336,16 +359,17 @@ public class GetMethod extends Activity
 						// Set media file data source: url or local file.
 						setDataSource(addressPlayer);
 						
-						mPlayer.prepare();
-						Log.d(TAG_PLAYER, "Duration:" + mPlayer.getDuration());
+						mPlayer.prepareAsync();
 						
-						// Start to play
-						mPlayer.start();
-						bReleased = false;
 					}
 					catch(Exception e)
 					{
 						e.printStackTrace();
+					}
+					
+					finally
+					{
+						Log.d(TAG_PLAYER, "Thread(r) is over!");
 					}
 				}
 			};
@@ -356,7 +380,9 @@ public class GetMethod extends Activity
 			if(mPlayer != null)
 			{
 				mPlayer.stop();
-				mPlayer.release();
+				mPlayer = null;
+
+				Log.d(TAG_PLAYER, "Catch exception, mPlayer released!");
 			}
 			e.printStackTrace();
 		}
@@ -371,7 +397,7 @@ public class GetMethod extends Activity
 		}
 		else
 		{
-			if(bReleased == false)
+			if(bStopped == false)
 			{
 				// Create URL object
 				URLConnection conn = new URL(path).openConnection();
@@ -443,6 +469,20 @@ public class GetMethod extends Activity
 		}
 	}
 	
+	/**************************** UploadInfo layout **************************************/
+	private void showUploadInfo()
+	{
+		Button btnSubmit = (Button) findViewById(R.id.btn_upload_info_submit);
+		btnSubmit.setOnClickListener(new Button.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				
+			}
+		});
+	} 
+
 	// Activity onPause
 	@Override
 	protected void onPause()
@@ -458,17 +498,22 @@ public class GetMethod extends Activity
 		
 		super.onPause();
 	}
-	/**************************** UploadInfo layout **************************************/
-	private void showUploadInfo()
+	
+	// Activity onDestory
+	@Override
+	protected void onDestroy()
 	{
-		Button btnSubmit = (Button) findViewById(R.id.btn_upload_info_submit);
-		btnSubmit.setOnClickListener(new Button.OnClickListener()
+		if(mPlayer != null)
 		{
-			@Override
-			public void onClick(View v)
+			if(mPlayer.isPlaying())
 			{
-				
+				mPlayer.stop();
 			}
-		});
-	} 
+
+			mPlayer.release();
+			mPlayer = null;
+		}
+		
+		super.onDestroy();
+	}
 }	

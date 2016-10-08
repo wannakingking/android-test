@@ -110,7 +110,6 @@
             android:id="@+id/layout_upload_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical|center_horizontal"
             android:visibility="visible"
             >
             <!-- username: -->
@@ -127,6 +126,7 @@
                     android:id="@+id/et_upload_info_username"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_weight="9"
                     />
             </TableRow>
 
@@ -144,6 +144,7 @@
                     android:id="@+id/et_upload_info_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_weight="9"
                     android:password="true"
                     />
             </TableRow>
@@ -157,8 +158,22 @@
                     android:id="@+id/btn_upload_info_submit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="10"
                     android:layout_span="2"
                     android:text="Submit"
+                    />
+            </TableRow>
+            <!-- Return text: -->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/btn_upload_info_return_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_span="2"
                     />
             </TableRow>
        </TableLayout>
