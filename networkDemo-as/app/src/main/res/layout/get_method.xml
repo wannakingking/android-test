@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    
-    <LinearLayout 
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button 
+        <Button
             android:id="@+id/btn_json_list_demo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
             android:text="Json loader demo"
             />
 
-        <Button 
+        <Button
             android:id="@+id/btn_player_demo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             android:text="Mp3 player demo"
             />
 
-        <Button 
+        <Button
             android:id="@+id/btn_upload_info_demo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,39 +31,39 @@
             android:text="Upload data demo"
             />
     </LinearLayout>
-    
+
         <!-- Json list -->
-        <LinearLayout 
+        <LinearLayout
             android:id="@+id/layout_json_list"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             >
-            <LinearLayout 
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <TextView 
+                <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
                      android:layout_weight="1"
                      android:text="columns_1"
                      />
-                <TextView 
+                <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
                      android:layout_weight="1"
                      android:text="columns_2"
                      />
-                <TextView 
+                <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
                      android:layout_weight="1"
                      android:text="columns_3"
                      />
             </LinearLayout>
-            <ListView 
+            <ListView
                 android:id="@+id/lv_json_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
         </LinearLayout>
 
         <!-- Mp3 player demo -->
-        <LinearLayout 
+        <LinearLayout
             android:id="@+id/layout_mp3_player"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -79,25 +79,25 @@
             android:gravity="center_vertical|center_horizontal"
             android:visibility="gone"
             >
-            <ImageButton 
+            <ImageButton
                 android:id="@+id/btn_player_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/play"
                 />
-            <ImageButton 
+            <ImageButton
                 android:id="@+id/btn_player_pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/pause"
                 />
-            <ImageButton 
+            <ImageButton
                 android:id="@+id/btn_player_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/reset"
                 />
-            <ImageButton 
+            <ImageButton
                 android:id="@+id/btn_player_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,12 +117,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <TextView 
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="username:"
                     />
-                <EditText 
+                <EditText
                     android:id="@+id/et_upload_info_username"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -135,17 +135,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <TextView 
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Password:"
                     />
-                <EditText 
+                <EditText
                     android:id="@+id/et_upload_info_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="9"
-                    android:password="true"
+                    android:inputType="textPassword"
                     />
             </TableRow>
 
@@ -154,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <Button 
+                <Button
                     android:id="@+id/btn_upload_info_submit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
