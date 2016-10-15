@@ -69,5 +69,4 @@
 !/app/src
 
 # Building app
-!/app/app.iml
 !/app/build.gradle

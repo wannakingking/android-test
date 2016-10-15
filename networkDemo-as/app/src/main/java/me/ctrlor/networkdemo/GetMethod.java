@@ -51,7 +51,8 @@ public class GetMethod extends Activity
 	private SimpleAdapter adapter;
 
 	/******************** Player ********************/
-	private String currentTempFilePath = "";
+	private String tempFilePath = "";
+	private boolean bLocal = true;
 	private MediaPlayer mPlayer;
 	private boolean bStopped = false;
 
@@ -83,7 +84,6 @@ public class GetMethod extends Activity
 			{
 				hideAllLayout();
 				layoutJsonList.setVisibility(View.VISIBLE);
-				Log.d(TAG, "testing LogCat");
 				showJsonList();
 			}
 		});
@@ -95,7 +95,6 @@ public class GetMethod extends Activity
 			{
 				hideAllLayout();
 				layoutPlayer.setVisibility(View.VISIBLE);
-				Log.d(TAG, "testing LogCat");
 				showPlayer();
 			}
 		});
@@ -241,7 +240,7 @@ public class GetMethod extends Activity
             @Override
             public void onClick(View v)
             {
-                  playAudio(addressPlayer);
+                  playAudio();
             }
         });
 
@@ -298,8 +297,8 @@ public class GetMethod extends Activity
 	            		if( !bStopped )
 	            		{
 	            			mPlayer.stop();
-
 	            			bStopped = true;
+
 	            		}
 	            	}
             	}
@@ -312,7 +311,7 @@ public class GetMethod extends Activity
         });
 	}
 
-	private void playAudio(final String path)
+	private void playAudio()
 	{
 		try
 		{
@@ -403,7 +402,7 @@ public class GetMethod extends Activity
 					try
 					{
 						// Set media file data source: url or local file.
-						setDataSource(addressPlayer);
+						setAudioSource(addressPlayer);
 
 						mPlayer.prepareAsync();
 
@@ -434,19 +433,21 @@ public class GetMethod extends Activity
 		}
 	}
 
-	// Set Data source
-	private void setDataSource(final String path) throws Exception
+	// Set audio source
+	private void setAudioSource(final String url) throws Exception
 	{
-		if(!URLUtil.isNetworkUrl(path))
+		if(URLUtil.isNetworkUrl(url))
 		{
-			mPlayer.setDataSource(path);
-		}
-		else
-		{
-			if( !bStopped )
+			// Do not play local file
+			if(!bLocal)
+			{
+				mPlayer.setDataSource(url);
+				return;
+			}
+			if(!bStopped)
 			{
 				// Create URL object
-				URLConnection conn = new URL(path).openConnection();
+				URLConnection conn = new URL(url).openConnection();
 				conn.connect();
 
 				// Get inputStream
@@ -457,10 +458,19 @@ public class GetMethod extends Activity
 				}
 
 				// Create tmp file
-				File tempFile = File.createTempFile("music",  "."
-					+ getFileExtension(path));
-				currentTempFilePath= tempFile.getAbsolutePath();
-				FileOutputStream fos = new FileOutputStream(tempFile);
+				File f = File.createTempFile("music", ".dat");
+				tempFilePath = f.getAbsolutePath();
+
+				Log.d(TAG, "tempFilePath is: " + tempFilePath);
+
+				FileOutputStream fos = new FileOutputStream(tempFilePath);
+
+				/* // Also working
+				byte[] data = StreamTool.read(inputStream);
+				fos.write(data);
+				fos.flush();
+				*/
+
 				byte buffer[] = new byte[1024];
 
 				do
@@ -472,12 +482,10 @@ public class GetMethod extends Activity
 					}
 					fos.write(buffer, 0, numRead);
 				}while(true);
-				/*
-				 byte[] data = StreamTool.read(inputStream);
-				 fos.write(data);
-				 */
 
-				mPlayer.setDataSource(currentTempFilePath);
+				Log.d(TAG, "The music is download to the tempFilePath");
+
+				mPlayer.setDataSource(tempFilePath);
 				try
 				{
 					inputStream.close();
@@ -488,22 +496,6 @@ public class GetMethod extends Activity
 				}
 			}
 		}
-	}
-
-	// Get file extension
-	private String getFileExtension(String strFileName)
-	{
-		File f = new File(strFileName);
-		String strExtension = f.getName();
-		strExtension = ( strExtension.substring(strExtension.lastIndexOf(".")+1) )
-				.toLowerCase();
-
-		if(strExtension == "" )
-		{
-			strExtension = "dat";
-		}
-
-		return strExtension;
 	}
 
 	// Del tmp file
@@ -590,7 +582,7 @@ public class GetMethod extends Activity
 	{
 		try
 		{
-			delFile(currentTempFilePath);
+			delFile(tempFilePath);
 		}
 		catch(Exception e)
 		{

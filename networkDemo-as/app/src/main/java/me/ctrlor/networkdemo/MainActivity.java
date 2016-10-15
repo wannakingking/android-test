@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements OnClickListener
 			break;
 
 		case R.id.btn_3:
-			mIntent = new Intent(this, GetMethod.class);
+			mIntent = new Intent(this, PostMethod.class);
 			break;
 
 		case 4:
