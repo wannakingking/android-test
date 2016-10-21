@@ -23,6 +23,22 @@ public class MainActivity extends Activity implements OnClickListener
 		setContentView(R.layout.activity_main);
 		setTitle("Network Demo");
 
+        // Create shortcut
+        Intent.ShortcutIconResource icon = Intent.ShortcutIconResource
+            .fromContext(this, R.drawable.ic_launcher);
+        Intent launchIntent = new Intent(this, MainActivity.class);
+        //launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        Intent intent = new Intent();
+        intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "networkDemo");
+        intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
+        intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+        intent.putExtra("duplicate", false);
+        
+        sendBroadcast(intent);
+
+        // Buttons
 		btn1 = (Button) findViewById(R.id.btn_1);
 		btn1.setOnClickListener(this);
 
@@ -41,7 +57,7 @@ public class MainActivity extends Activity implements OnClickListener
 		btn6 = (Button) findViewById(R.id.btn_6);
 		btn6.setOnClickListener(this);
 
-		btn2.callOnClick();
+		btn4.callOnClick();
 
 	}
 
@@ -63,16 +79,16 @@ public class MainActivity extends Activity implements OnClickListener
 			mIntent = new Intent(this, PostMethod.class);
 			break;
 
-		case 4:
-			mIntent = new Intent(this, UrlConnectionMethod.class);
+		case R.id.btn_4:
+			mIntent = new Intent(this, SocketMethod.class);
 			break;
 
-		case 5:
-			mIntent = new Intent(this, UrlConnectionMethod.class);
+		case R.id.btn_5:
+			mIntent = new Intent(this, HttpMethod.class);
 			break;
 
-		case 6:
-			mIntent = new Intent(this, UrlConnectionMethod.class);
+		case R.id.btn_6:
+			mIntent = new Intent(this, UdpMethod.class);
 			break;
 
 		default:
