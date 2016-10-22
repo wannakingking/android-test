@@ -34,6 +34,7 @@ public class SocketMethod extends Activity
 	private static final String host = "127.0.0.1";
 	private static final int port = 10010;
 
+	private static ServerSocket listenSocket;
 	private static Socket	serverSocket;
 	private static Socket	clientSocket;
 	private static EditText et;
@@ -45,8 +46,8 @@ public class SocketMethod extends Activity
 	private ClientGuard threadClientGuard;
 	private ServerGuard threadServerGuard;
 
-    private Object mPauseLock;
-    private boolean bPaused = false;
+    private Object mServerListenLock;
+    private boolean bLock;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,36 +55,32 @@ public class SocketMethod extends Activity
 		setContentView(R.layout.socket_method);
 		setTitle("Socket method");
 
-        mPauseLock = new Object();
-
 		listView = (ListView) findViewById(R.id.list_view);
 		et = (EditText) findViewById(R.id.et_message);
 		Button btnSend = (Button) findViewById(R.id.btn_send);
 		btnSend.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
 				String string = et.getText().toString();
 
 				// Insert message to client thread.
 				Message message = new Message();
 				message.arg1 = FLAG_INSERT_MSG;
 				message.obj = string;
-				threadClientGuard.handler.sendMessage(message);
+				try {
+					threadClientGuard.handler.sendMessage(message);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				et.setText("");
 			}
 		});
 
-		// Start server guard thread.
-		if(threadServerGuard == null) {
-			threadServerGuard = new ServerGuard();
-			threadServerGuard.start();
-		}
+        // Start thread tasks
+        StartTasks();
 
-		// Start client guard thread;
-		if(threadClientGuard == null) {
-			threadClientGuard = new ClientGuard();
-			threadClientGuard.start();
-		}
+		Log.d(TAG, "onCreate().");
 	}
 
 	/***
@@ -94,11 +91,16 @@ public class SocketMethod extends Activity
 		@Override
 		public void run() {
 			try {
-				ServerSocket socket = new ServerSocket(port);
 
-				Log.d(TAG, "New server socket.");
+				listenSocket = new ServerSocket(port);
 
-				serverSocket = socket.accept();
+				// Ready to listen, unlock
+				synchronized(mServerListenLock) {
+					bLock = false;
+					mServerListenLock.notify();
+				}
+
+				serverSocket = listenSocket.accept();
 
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(serverSocket.getInputStream()));
@@ -106,7 +108,15 @@ public class SocketMethod extends Activity
 											true);
 
 				while(true) {
-					String string = in.readLine();
+
+					// Waiting for read.
+					String string = "";
+					try {
+						string = in.readLine();
+					} catch (Exception e) {
+						Log.d(TAG, "readLine() exception, ServerGuard quit.");
+						break;
+					}
 					if(string.equals("exit") || string.equals("quit")) {
 						break;
 					}
@@ -117,17 +127,6 @@ public class SocketMethod extends Activity
 					msg.obj = string;
 					mHandler.sendMessage(msg);
 
-                    // Keep waiting when activity paused.
-                    synchronized(mPauseLock) {
-                        while(bPaused) {
-                            try {
-								Log.d(TAG, "ServerGuard:-mPauseLock.wait()!");
-                                mPauseLock.wait();
-                            } catch(InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
 				}
 
 			} catch(Exception e) {
@@ -147,14 +146,19 @@ public class SocketMethod extends Activity
 		@Override
 		public void run() {
 			try {
-				// Initializing clientSocket if null.
-				if (clientSocket == null) {
-
-					clientSocket = new Socket(host, port);
-
-					Log.d(TAG, "clientSock is null, then new instance,socket:."
-							+ clientSocket);
+				// Waiting for server guard ready to listen
+				synchronized(mServerListenLock) {
+					while(bLock) {
+						Log.d(TAG, "ClientGuard is locked, waiting for serverSocket"
+							+ "ready to listen.");
+						mServerListenLock.wait();
+					}
 				}
+
+				Log.d(TAG, "ClientGuard is unlocked now");
+
+				// Initializing clientSocket if null.
+				clientSocket = new Socket(host, port);
 
 				// Loop to get message from MessageQueue
 				Looper.prepare();
@@ -184,11 +188,11 @@ public class SocketMethod extends Activity
 
 				};
 
+				Looper.loop();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			Looper.loop();
 		}
 	}
 
@@ -209,7 +213,7 @@ public class SocketMethod extends Activity
 			new String[]{"name", "message"},
 			new int[]{R.id.tv_server_name, R.id.tv_server_message});
 
-		listView.setAdapter(adapter);
+			listView.setAdapter(adapter);
 
 
 	}
@@ -229,35 +233,90 @@ public class SocketMethod extends Activity
 			}
         }
     };
-    
-    @Override
-    public void onPause() {
-        synchronized(mPauseLock) {
-            bPaused = true;
-        }
 
-		super.onPause();
-    }
+	/***
+	  * Start thread tasks
+	  */
+	private void StartTasks() {
 
-    @Override
-    public void onResume() {
-        synchronized(mPauseLock) {
-            bPaused = false;
-            mPauseLock.notifyAll();
-        }
+		// Initializing the lock
+        bLock = true;
+		mServerListenLock = new Object();
 
-        super.onResume();
-    }
+		// Start server guard thread.
+		threadServerGuard = new ServerGuard();
+		threadServerGuard.start();
+
+		// Start client guard thread;
+		threadClientGuard = new ClientGuard();
+		threadClientGuard.start();
+
+
+
+		Log.d(TAG, "Start thread tasks!!!!!!!!!");
+
+	}
+
+	/***
+	  * End thread tasks
+	  */
+	private void EndTasks() {
+
+		try {
+            if(!threadServerGuard.currentThread().isInterrupted()) {
+			    threadServerGuard.currentThread().interrupt();
+            }
+
+            if(!threadClientGuard.currentThread().isInterrupted()) {
+			    threadClientGuard.currentThread().interrupt();
+            }
+
+			listenSocket.close();
+
+			if(serverSocket != null) {
+				serverSocket.close();
+			}
+
+			if(clientSocket != null) {
+				clientSocket.close();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+            Log.d(TAG, "End thread tasks!!!!!!!!!");
+		}
+
+	}
+
+
+	@Override
+	public void onStop() {
+
+        EndTasks();
+
+		Log.d(TAG, "onStop().");
+		super.onStop();
+	}
+
+
+	@Override
+	public void onRestart() {
+
+        StartTasks();
+
+		Log.d(TAG, "onRestart().");
+		super.onRestart();
+	}
 
 	@Override
 	public void onDestroy() {
-		try {
-			serverSocket.close();
-			clientSocket.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+
+        EndTasks();
+
+		// Clear list items
+		items.clear();
 
 		super.onDestroy();
+
+		Log.d(TAG, "onDestroy().");
 	}
 }
