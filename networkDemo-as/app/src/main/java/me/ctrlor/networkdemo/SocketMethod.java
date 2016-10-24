@@ -127,6 +127,11 @@ public class SocketMethod extends Activity
 					msg.obj = string;
 					mHandler.sendMessage(msg);
 
+					// Is interrupt?
+					if(Thread.currentThread().isInterrupted()) {
+						return;
+					}
+
 				}
 
 			} catch(Exception e) {
@@ -188,6 +193,11 @@ public class SocketMethod extends Activity
 
 				};
 
+				// Is interrupt?
+				if(Thread.currentThread().isInterrupted()) {
+					return;
+				}
+				
 				Looper.loop();
 
 			} catch (Exception e) {

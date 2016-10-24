@@ -15,7 +15,7 @@ public class MainActivity extends Activity implements OnClickListener
 	Button btn3;
 	Button btn4;
 	Button btn5;
-	Button btn6;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -54,10 +54,6 @@ public class MainActivity extends Activity implements OnClickListener
 		btn5 = (Button) findViewById(R.id.btn_5);
 		btn5.setOnClickListener(this);
 
-		btn6 = (Button) findViewById(R.id.btn_6);
-		btn6.setOnClickListener(this);
-
-		btn4.callOnClick();
 
 	}
 
@@ -84,10 +80,6 @@ public class MainActivity extends Activity implements OnClickListener
 			break;
 
 		case R.id.btn_5:
-			mIntent = new Intent(this, HttpMethod.class);
-			break;
-
-		case R.id.btn_6:
 			mIntent = new Intent(this, UdpMethod.class);
 			break;
 
