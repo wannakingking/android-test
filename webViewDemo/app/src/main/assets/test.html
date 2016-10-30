@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script type="text/javascript">
+			function submit1()
+			{
+			    var username = document.getElementById('strUsername').value;
+			    var password = document.getElementById('strPassword').value;
+			    AndroidFunction.showToast("username: " + username + ", password: " 
+			            + password);
+			}
+        </script>
+        <script type="text/javascript" src="test.js"></script>
+    </head>
+
+    <body>
+
+        <form>
+            <p>Username:<p>
+            <input type="text" name="username" id="strUsername" />
+
+            <br>
+
+            <p>Password:<p>
+            <input type="password" name="password" id="strPassword" />
+
+            <br>
+            <br>
+            <input value="submit" type="button" name="Submit"
+                    id="btnSubmit" onclick="submit1();" />
+        </form>
+    </body>
+</html>

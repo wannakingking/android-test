@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+	    <EditText
+	        android:id="@+id/et_url_address"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="5"
+	        android:hint="Input web url address..."
+	        />
+	    <Button
+	        android:id="@+id/btn_get_web_page"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="Go"
+	        />
+	</LinearLayout>
+
+    <WebView
+        android:id="@+id/wv_display_web_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+		android:layout_weight="9"
+        /> 
+</LinearLayout>
+        
