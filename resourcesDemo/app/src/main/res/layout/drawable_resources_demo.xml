@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+		android:background="@android:color/darker_gray">
+
+		<!-- State list drawable -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="State list drawable"
+				/>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center" >
+				<ImageButton
+	                android:id="@+id/btn_drawable_1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:src="@drawable/button_state_list"
+	                android:background="@null"
+	                />
+			</LinearLayout>
+		</LinearLayout>
+
+		<!-- Layer list drawable -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Layer list drawable"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center" >
+		        <ImageView
+		            android:id="@+id/btn_drawable_2"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:src="@drawable/button_layer_list"
+		            />
+
+			</LinearLayout>
+        </LinearLayout>
+
+		<!-- Shape drawable -->
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Shape list drawable"/>
+	        <ImageView
+	            android:id="@+id/btn_drawable_3"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:background="@drawable/shape_rectangle"
+	            />
+		</LinearLayout>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+		android:background="@android:color/darker_gray">
+
+		<!-- Clip drawable -->
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Clip drawable"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center" >
+		        <ImageButton
+		            android:id="@+id/btn_drawable_4"
+		            android:layout_width="match_parent"
+		            android:layout_height="match_parent"
+		            android:text="ClipDrawable"
+		            android:src="@drawable/clip"
+					android:background="@null"
+		            />
+			</LinearLayout>
+		</LinearLayout>
+
+		<!-- Transition animation drawable -->
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Transition animation drawable"
+				/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center" >
+		        <ImageButton
+		            android:id="@+id/btn_drawable_5"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:src="@drawable/transition"
+		            />
+			</LinearLayout>
+		</LinearLayout>
+
+		<!-- Scale animation drawable -->
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Scale drawable"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center">
+			    <ImageButton
+			        android:id="@+id/btn_drawable_6"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+					android:src="@drawable/scale_animation"
+					android:background="@null"
+			        />
+			</LinearLayout>
+		</LinearLayout>
+    </TableRow>
+
+	<TableRow
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:background="@android:color/darker_gray">
+
+		<!-- Nine patch drawable -->
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Nine patch drawable"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center" >
+				<ImageView
+					android:id="@+id/btn_drawable_7"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:text="ClipDrawable"
+					android:src="@drawable/about_me"
+					/>
+			</LinearLayout>
+		</LinearLayout>
+
+		<!-- Level list drawable -->
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Level list drawable"
+				/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center" >
+				<ImageButton
+					android:id="@+id/btn_drawable_8"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:src="@drawable/level_list"
+					/>
+			</LinearLayout>
+		</LinearLayout>
+
+		<!-- Inset drawable -->
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_marginLeft="1dp"
+			android:layout_marginTop="1dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginBottom="1dp"
+			android:background="@android:color/white"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:text="Inset drawable"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center">
+				<ImageView
+					android:id="@+id/btn_drawable_9"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/inset"
+					/>
+			</LinearLayout>
+		</LinearLayout>
+	</TableRow>
+</TableLayout>
+            
