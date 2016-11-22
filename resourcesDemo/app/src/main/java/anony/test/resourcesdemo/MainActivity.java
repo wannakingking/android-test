@@ -39,24 +39,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
 		Button btn2 = (Button) findViewById(R.id.btn_2);
 		btn2.setOnClickListener(this);
 
-        /*
-		btn3 = (Button) findViewById(R.id.btn_3);
+		Button btn3 = (Button) findViewById(R.id.btn_3);
 		btn3.setOnClickListener(this);
 
-		btn4 = (Button) findViewById(R.id.btn_4);
+		Button btn4 = (Button) findViewById(R.id.btn_4);
 		btn4.setOnClickListener(this);
 
-		btn5 = (Button) findViewById(R.id.btn_5);
-		btn5.setOnClickListener(this);
-
-		btn6 = (Button) findViewById(R.id.btn_6);
+		Button btn6 = (Button) findViewById(R.id.btn_6);
 		btn6.setOnClickListener(this);
-
-		btn7 = (Button) findViewById(R.id.btn_7);
-		btn7.setOnClickListener(this);
-        */
-
-		btn2.callOnClick();
 
 	}
 
@@ -74,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
 			mIntent = new Intent(this, DrawableResourcesDemo.class);
 			break;
 
-            /*
 		case R.id.btn_3:
 			mIntent = new Intent(this, XmlResourcesDemo.class);
 			break;
@@ -83,18 +72,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
 			mIntent = new Intent(this, StyleResourcesDemo.class);
 			break;
 
-		case R.id.btn_5:
-			mIntent = new Intent(this, ThemeResourcesDemo.class);
-			break;
-
 		case R.id.btn_6:
 			mIntent = new Intent(this, AudioResourcesDemo.class);
 			break;
-
-		case R.id.btn_7:
-			mIntent = new Intent(this, LanguageResourcesDemo.class);
-			break;
-            */
 
 
 		default:

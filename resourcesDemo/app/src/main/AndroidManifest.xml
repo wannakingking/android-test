@@ -20,9 +20,7 @@
         <activity android:name=".DrawableResourcesDemo" />
         <activity android:name=".XmlResourcesDemo" />
         <activity android:name=".StyleResourcesDemo" />
-        <activity android:name=".ThemeResourcesDemo" />
         <activity android:name=".AudioResourcesDemo" />
-        <activity android:name=".LanguageResourcesDemo" />
     </application>
 
 </manifest>
