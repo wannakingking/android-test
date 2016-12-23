@@ -1,1 +1,1 @@
-# TEST PROJECT FOR MYSELF
+# Android demo for testing
