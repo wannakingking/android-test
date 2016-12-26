@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+	android:orientation="vertical"
+    tools:context="net.ctrlor.test.mapdemo.MainActivity">
+
+	<RadioGroup
+		android:id="@+id/rg_map_vendor"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/activity_vertical_margin"
+		android:orientation="horizontal"
+		>
+		<RadioButton
+			android:id="@+id/radio_baidu_map"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Baidu Map"
+			android:checked="true"
+			/>
+		<RadioButton
+			android:id="@+id/radio_google_map"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Bing Map"
+			/>
+		<RadioButton
+			android:id="@+id/radio_bing_map"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Bing Map"
+			/>
+	</RadioGroup>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		>
+		<CheckBox
+			android:id="@+id/cb_vendor"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:checked="true"
+			android:text="Map Vendor"
+			/>
+		<CheckBox
+			android:id="@+id/cb_current_lat_long"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:checked="true"
+			android:text="Current's LatLong"
+			/>
+		<CheckBox
+			android:id="@+id/cb_current_geo_location"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:checked="true"
+			android:text="Current's GeoLocation"
+			/>
+		<CheckBox
+			android:id="@+id/cb_target_geo_location"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:checked="true"
+			android:text="Target's GeoLocation"
+			/>
+	</LinearLayout>
+
+	<Button
+		android:id="@+id/btn_open_map"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Go to map"/>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@android:color/background_dark"/>
+	<TextView
+		android:id="@+id/tv_output"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		/>
+</LinearLayout>
