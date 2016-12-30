@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class CustomMapData implements Serializable{
 
-	private String strMapVendor;
-	private String strCurrentGeoLocation;
-	private String strTargetGeoLocation;
-	private Double dLatitude;
-	private Double dLongitude;
+	private String strMapVendor = "";
+	private String strCurrentGeoLocation = "";
+	private String strTargetGeoLocation = "";
+	private Double dLatitude = 0.0d;
+	private Double dLongitude = 0.0d;
 
 	public CustomMapData() {
 

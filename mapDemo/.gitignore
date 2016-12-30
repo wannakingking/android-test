@@ -41,8 +41,8 @@
 !README*
 !.gitignore
 
-# eclipse format
-.project
+########### eclipse ##################
+!.project
 !/src
 !/res
 /res/drawable*
@@ -50,7 +50,23 @@
 /res/values-*
 !AndroidManifest.xml
 
-# android studio
+########### android studio ###########
+# Gradle script file
+!gradlew*
+
+# Gradle settings file
+!settings.gradle
+
+# Top-level build file.
+!build.gradle
+
+# Gradle wrapper directory
+!/gradle
+
+# Sources directory
 !/app
 /app/*
 !/app/src
+
+# Building app
+!/app/build.gradle
