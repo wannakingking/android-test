@@ -274,20 +274,6 @@ public class BaiduMapDemo extends AppCompatActivity implements
         super.onResume();
     }
 
-    /*
-    @Override
-    protected void onStop() {
-        mLocClient.unRegisterLocationListener(myListener);
-        mLocClient.stop();
-        super.onStop();
-    }
-
-    @Override
-    protected void onRestart() {
-        mLocClient.registerLocationListener(myListener);
-        mLocClient.start();
-    }
-    */
 
     @Override
     protected void onDestroy() {
@@ -302,7 +288,7 @@ public class BaiduMapDemo extends AppCompatActivity implements
         super.onDestroy();
 
         // Recycle mark
-        mBitmapDesc.recycle();
+        //mBitmapDesc.recycle();
     }
 
 }

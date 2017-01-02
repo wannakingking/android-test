@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">mapDemo</string>
+    <string name="default_info_title">default info title</string>
+    <string name="default_info_snippet">default info snippet</string>
 </resources>
