@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int BAIDU_MAP = 0x01;
     private static final int GOOGLE_MAP = 0x02;
-    private static final int BING_MAP = 0x03;
+    private static final int GAODE_MAP = 0x03;
+    private static final int TENCENT_MAP = 0x04;
 
     private static int nMapVendor;
     private static boolean bMapVendor;
@@ -53,18 +54,25 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent, GOOGLE_MAP);
                         break;
 
-                    case R.id.radio_bing_map:
-                        nMapVendor = BING_MAP;
+                    case R.id.radio_gaode_map:
+                        nMapVendor = GAODE_MAP;
                         intent = new Intent(getBaseContext(),
-                                BingMapDemo.class);
-                        startActivityForResult(intent, BING_MAP);
+                                GaodeMapDemo.class);
+                        startActivityForResult(intent, GAODE_MAP);
+                        break;
+
+                    case R.id.radio_tencent_map:
+                        nMapVendor = TENCENT_MAP;
+                        intent = new Intent(getBaseContext(),
+                                TencentMapDemo.class);
+                        startActivityForResult(intent, TENCENT_MAP);
                         break;
                 }
 
             }
 
         });
-        ((RadioButton) findViewById(R.id.radio_google_map)).setChecked(true);
+        ((RadioButton) findViewById(R.id.radio_tencent_map)).setChecked(true);
 
     }
 

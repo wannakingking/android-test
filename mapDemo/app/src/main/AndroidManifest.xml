@@ -33,6 +33,18 @@
             android:value="AIzaSyASqviWN_iTWc8A_7yisEBYxVx6otuYxPQ" />
         <!-- -->
 
+        <!-- Tencent Map key -->
+        <meta-data
+            android:name="TencentMapSDK"
+            android:value="UDMBZ-ACEWI-Y3YGI-52YIJ-BIFTJ-LUB7Z" />
+        <!-- -->
+
+        <!-- Gaode Map key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="bb8171be49ff593d8f533ae1c2536d68" />
+        <!-- -->
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,13 +55,20 @@
 
 		<activity android:name=".BaiduMapDemo" />
 		<activity android:name=".GoogleMapDemo" />
-		<activity android:name=".BingMapDemo" />
+        <activity android:name=".TencentMapDemo" />
+		<activity android:name=".GaodeMapDemo" />
 
+		<!-- Baidu location service -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
 		</service>
+		<!--  -->
+
+		<!-- Gaode location service -->
+        <service android:name="com.amap.api.location.APSService" />
+		<!--  -->
 
     </application>
 

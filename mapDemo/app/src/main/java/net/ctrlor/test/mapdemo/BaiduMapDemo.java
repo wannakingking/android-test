@@ -65,7 +65,6 @@ public class BaiduMapDemo extends AppCompatActivity implements
         setContentView(R.layout.activity_baidu_map_demo);
         setTitle("Baidu map demo");
 
-
         Button btnOk = (Button) findViewById(R.id.btn_ok_baidu_map_demo);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

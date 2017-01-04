@@ -23,6 +23,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -180,6 +181,14 @@ public class GoogleMapDemo extends AppCompatActivity implements
         if (mCurrentLocation != null) {
             Log.d(TAG, "onMapReady()-> load current location");
 
+            // Current location
+            mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(mCurrentLocation.getLatitude(),
+                            mCurrentLocation.getLongitude()))
+                    .icon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.one_point)));
+
+            // Target location
             markerOptions = new MarkerOptions().position(
                     new LatLng(mCurrentLocation.getLatitude(),
                             mCurrentLocation.getLongitude()));
@@ -249,6 +258,8 @@ public class GoogleMapDemo extends AppCompatActivity implements
 
                 Log.d(TAG, "first location");
             }
+
+
             // Set data for call back
             mCustomMapData.setLatitude(latLng.latitude);
             mCustomMapData.setLongitude(latLng.longitude);

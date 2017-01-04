@@ -24,7 +24,6 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:text="Baidu Map"
-			android:checked="true"
 			/>
 		<RadioButton
 			android:id="@+id/radio_google_map"
@@ -34,12 +33,20 @@
 			android:text="Google Map"
 			/>
 		<RadioButton
-			android:id="@+id/radio_bing_map"
+			android:id="@+id/radio_gaode_map"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="Bing Map"
+			android:text="Gaode Map"
+			android:checked="true"
 			/>
+		<RadioButton
+			android:id="@+id/radio_tencent_map"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Tencent Map"
+			android:checked="true" />
 	</RadioGroup>
 
 	<LinearLayout

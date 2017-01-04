@@ -59,6 +59,7 @@
 
 # Top-level build file.
 !build.gradle
+!proguard-rules.pro
 
 # Gradle wrapper directory
 !/gradle
