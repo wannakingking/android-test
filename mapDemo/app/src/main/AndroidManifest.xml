@@ -21,11 +21,11 @@
         android:theme="@style/AppTheme"
         android:hardwareAccelerated="true">
 
-        <!-- Baidu Map Key -->
+        <!-- Baidu Map Key
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="ZuxkcWBpo82GdboycG6KGrFaMRwahdkE" />
-        <!-- -->
+         -->
 
         <!-- Google Map key -->
         <meta-data
@@ -39,7 +39,7 @@
             android:value="UDMBZ-ACEWI-Y3YGI-52YIJ-BIFTJ-LUB7Z" />
         <!-- -->
 
-        <!-- Gaode Map key -->
+        <!-- Amap  key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="bb8171be49ff593d8f533ae1c2536d68" />
@@ -53,20 +53,22 @@
             </intent-filter>
         </activity>
 
+        <!--
 		<activity android:name=".BaiduMapDemo" />
+		-->
 		<activity android:name=".GoogleMapDemo" />
         <activity android:name=".TencentMapDemo" />
 		<activity android:name=".GaodeMapDemo" />
 
-		<!-- Baidu location service -->
+		<!-- Baidu location service
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
 		</service>
-		<!--  -->
+		  -->
 
-		<!-- Gaode location service -->
+		<!-- Amap location service -->
         <service android:name="com.amap.api.location.APSService" />
 		<!--  -->
 

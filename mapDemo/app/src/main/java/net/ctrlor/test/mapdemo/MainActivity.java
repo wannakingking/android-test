@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int BAIDU_MAP = 0x01;
+    //private static final int BAIDU_MAP = 0x01;
     private static final int GOOGLE_MAP = 0x02;
     private static final int GAODE_MAP = 0x03;
     private static final int TENCENT_MAP = 0x04;
@@ -40,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
                 int id = ((RadioGroup) findViewById(R.id.rg_map_vendor))
                         .getCheckedRadioButtonId();
                 switch (id) {
+                    /*
                     case R.id.radio_baidu_map:
                         nMapVendor = BAIDU_MAP;
                         intent = new Intent(getBaseContext(),
                                 BaiduMapDemo.class);
                         startActivityForResult(intent, BAIDU_MAP);
                         break;
+                        */
 
                     case R.id.radio_google_map:
                         nMapVendor = GOOGLE_MAP;

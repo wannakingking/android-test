@@ -18,6 +18,7 @@
 		android:layout_marginBottom="@dimen/activity_vertical_margin"
 		android:orientation="horizontal"
 		>
+		<!--
 		<RadioButton
 			android:id="@+id/radio_baidu_map"
 			android:layout_width="0dp"
@@ -25,6 +26,7 @@
 			android:layout_weight="1"
 			android:text="Baidu Map"
 			/>
+			-->
 		<RadioButton
 			android:id="@+id/radio_google_map"
 			android:layout_width="0dp"
